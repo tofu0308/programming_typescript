@@ -31,5 +31,22 @@ console.log('unknown ///////');
   console.log(a);
   console.log(b);
   console.log(d);
+}
+
+// boolean
+console.log('boolean ///////');
+{
+  let a = true;
+  var b = false;
+  const c = true;
+  let d: boolean = true;
+  let e: true = true;
+  // let f: false = true; => エラー
+
+  console.log(a);
+  console.log(b);
+  console.log(c);
+  console.log(d);
+  console.log(e);
 
 }
