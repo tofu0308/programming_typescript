@@ -216,4 +216,10 @@ console.log('オブジェクト ///////');
   }
   // user.firstName = 'abby with an e' 読み取り専用プロパティであるため、'firstName' に代入することはできません。ts(2540)
 
+  let danger: {}
+  danger = {}
+  danger = {x: 1}
+  danger = []
+  danger = 2
+  console.log(danger);
 }

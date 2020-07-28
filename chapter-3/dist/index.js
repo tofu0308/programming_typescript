@@ -174,5 +174,15 @@ console.log('オブジェクト ///////');
     // aa = {40: true}; プロパティ 'b' は型 '{ 40: true; }' にありませんが、型 '{ [key: number]: boolean; b: number; c?: string | undefined; }' では必須です。ts(2741)
     // aa = {b:6, 50: 'string' }; 型 'string' を型 'boolean' に割り当てることはできません。ts(2322)
     console.log(aa);
+    let user = {
+        firstName: 'abby'
+    };
+    // user.firstName = 'abby with an e' 読み取り専用プロパティであるため、'firstName' に代入することはできません。ts(2540)
+    let danger;
+    danger = {};
+    danger = { x: 1 };
+    danger = [];
+    danger = 2;
+    console.log(danger);
 }
 //# sourceMappingURL=index.js.map
