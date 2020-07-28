@@ -33,13 +33,13 @@ console.log('unknown ///////');
 console.log('boolean ///////');
 {
     let a = true;
-    var b = false;
+    var booleanb = false;
     const c = true;
     let d = true;
     let e = true;
     // let f: false = true; エラー
     console.log(a);
-    console.log(b);
+    console.log(booleanb);
     console.log(c);
     console.log(d);
     console.log(e);
@@ -66,7 +66,7 @@ console.log('bigint ///////');
 {
     let a = 1234n;
     const b = 5678n;
-    var c = a + b;
+    var bigintc = a + b;
     let d = a < 12345;
     // let e = 88.5n; bigint リテラルは整数である必要があります。ts(1353)
     let f = 100n;
@@ -74,7 +74,7 @@ console.log('bigint ///////');
     // let h: bigint = 100; 型 '100' を型 'bigint' に割り当てることはできません。ts(2322)
     console.log(a);
     console.log(b);
-    console.log(c);
+    console.log(bigintc);
     console.log(d);
     console.log(f);
     console.log(g);
@@ -138,6 +138,12 @@ console.log('オブジェクト ///////');
     console.log(b);
     console.log(b.c);
     console.log(b.c.d);
-    console.log(c);
+}
+{
+    let a = {
+        b: 12
+    };
+    console.log(a);
+    console.log(a.b);
 }
 //# sourceMappingURL=index.js.map

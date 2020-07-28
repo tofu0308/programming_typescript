@@ -44,7 +44,7 @@ console.log('boolean ///////');
   // let f: false = true; エラー
 
   console.log(a);
-  console.log(console.log(b.c.d););
+  console.log(booleanb);
   console.log(c);
   console.log(d);
   console.log(e);
@@ -156,5 +156,12 @@ console.log('オブジェクト ///////');
   console.log(b);
   console.log(b.c);
   console.log(b.c.d);
+}
 
+{
+  let a: {b: number} = {
+    b: 12
+  }
+  console.log(a);
+  console.log(a.b);
 }
