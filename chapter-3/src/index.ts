@@ -208,4 +208,12 @@ console.log('オブジェクト ///////');
   // aa = {b:6, 50: 'string' }; 型 'string' を型 'boolean' に割り当てることはできません。ts(2322)
 
   console.log(aa);
+
+  let user: {
+    readonly firstName: string
+  } = {
+    firstName: 'abby'
+  }
+  // user.firstName = 'abby with an e' 読み取り専用プロパティであるため、'firstName' に代入することはできません。ts(2540)
+
 }
