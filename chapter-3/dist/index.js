@@ -145,5 +145,34 @@ console.log('オブジェクト ///////');
     };
     console.log(a);
     console.log(a.b);
+    let c = {
+        firstName: 'jhon',
+        lastName: 'barrowman'
+    };
+    console.log(c);
+    class Person {
+        constructor(firstName, lastName) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+        }
+    }
+    c = new Person('matt', 'smith');
+    console.log(c);
+}
+{
+    let a;
+    // a = {} プロパティ 'b' は型 '{}' にありませんが、型 '{ b: number; }' では必須です。ts(2741)
+    a = {
+        b: 1,
+    };
+    let aa;
+    aa = { b: 1 };
+    aa = { b: 2, c: undefined };
+    aa = { b: 3, c: 'string c' };
+    aa = { b: 4, 10: true };
+    aa = { b: 5, 20: true, 30: false };
+    // aa = {40: true}; プロパティ 'b' は型 '{ 40: true; }' にありませんが、型 '{ [key: number]: boolean; b: number; c?: string | undefined; }' では必須です。ts(2741)
+    // aa = {b:6, 50: 'string' }; 型 'string' を型 'boolean' に割り当てることはできません。ts(2322)
+    console.log(aa);
 }
 //# sourceMappingURL=index.js.map
