@@ -79,4 +79,21 @@ console.log('bigint ///////');
     console.log(f);
     console.log(g);
 }
+// string
+console.log('string ///////');
+{
+    let a = 'stringa';
+    var stringb = 'stringb';
+    const c = '!';
+    let d = a + stringb + ' ' + c;
+    let e = 'string e';
+    let f = 'string f';
+    //let g : 'string g' = 'string h';  型 '"string h"' を型 '"string g"' に割り当てることはできません。ts(2322)
+    console.log(a);
+    console.log(b);
+    console.log(c);
+    console.log(d);
+    console.log(e);
+    console.log(f);
+}
 //# sourceMappingURL=index.js.map
