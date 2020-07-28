@@ -90,10 +90,21 @@ console.log('string ///////');
     let f = 'string f';
     //let g : 'string g' = 'string h';  型 '"string h"' を型 '"string g"' に割り当てることはできません。ts(2322)
     console.log(a);
-    console.log(b);
+    console.log(stringb);
     console.log(c);
     console.log(d);
     console.log(e);
     console.log(f);
+}
+// symbol
+console.log('symbol ///////');
+{
+    let a = Symbol('a');
+    let b = Symbol('b');
+    var SymbolC = a === b;
+    //  let d = a + 'x'; '+' 演算子を 'symbol' 型に適用することはできません。ts(2469)
+    console.log(a);
+    console.log(b);
+    console.log(SymbolC);
 }
 //# sourceMappingURL=index.js.map
