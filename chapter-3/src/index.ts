@@ -119,4 +119,14 @@ console.log('symbol ///////');
   console.log(a);
   console.log(b);
   console.log(SymbolC);
+
+  const e = Symbol('e');
+  const f: unique symbol = Symbol('f');
+  // let g: unique symbol =  Symbol('f'); 型が 'unique symbol' 型の変数は、'const' である必要があります。ts(1332)
+  let h = e === e;
+  // let i = e === f; 型 'typeof e' と 'typeof f' には重複がないため、この条件は常に 'false' を返します。ts(2367)
+
+  console.log(e);
+  console.log(f);
+  console.log(h);
 }
