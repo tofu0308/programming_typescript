@@ -130,3 +130,31 @@ console.log('symbol ///////');
   console.log(f);
   console.log(h);
 }
+
+// オブジェクト
+console.log('オブジェクト ///////');
+{
+  let a: object = {
+    b: 'x'
+  }
+  // a.b プロパティ 'b' は型 'object' に存在しません。ts(2339)
+}
+
+{
+  let a = {
+    b: 'x'
+  }
+  a.b // (property) b: string
+  console.log(a);
+  console.log(a.b);
+
+  let b = {
+    c: {
+      d: 'f'
+    }
+  }
+  console.log(b);
+  console.log(b.c);
+  console.log(b.c.d);
+
+}
