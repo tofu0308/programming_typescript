@@ -68,3 +68,23 @@ console.log('number ///////');
   console.log(e);
   console.log(f);
 }
+
+// bigint
+console.log('bigint ///////');
+{
+  let a = 1234n;
+  const b = 5678n;
+  var c = a + b;
+  let d = a < 12345
+  // let e = 88.5n; bigint リテラルは整数である必要があります。ts(1353)
+  let f: bigint = 100n;
+  let g: 100n = 100n;
+  // let h: bigint = 100; 型 '100' を型 'bigint' に割り当てることはできません。ts(2322)
+
+  console.log(a);
+  console.log(b);
+  console.log(c);
+  console.log(d);
+  console.log(f);
+  console.log(g);
+}
