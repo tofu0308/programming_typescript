@@ -37,14 +37,14 @@ console.log('unknown ///////');
 console.log('boolean ///////');
 {
   let a = true;
-  var b = false;
+  var booleanb = false;
   const c = true;
   let d: boolean = true;
   let e: true = true;
   // let f: false = true; エラー
 
   console.log(a);
-  console.log(b);
+  console.log(console.log(b.c.d););
   console.log(c);
   console.log(d);
   console.log(e);
@@ -74,7 +74,7 @@ console.log('bigint ///////');
 {
   let a = 1234n;
   const b = 5678n;
-  var c = a + b;
+  var bigintc = a + b;
   let d = a < 12345
   // let e = 88.5n; bigint リテラルは整数である必要があります。ts(1353)
   let f: bigint = 100n;
@@ -83,7 +83,7 @@ console.log('bigint ///////');
 
   console.log(a);
   console.log(b);
-  console.log(c);
+  console.log(bigintc);
   console.log(d);
   console.log(f);
   console.log(g);
