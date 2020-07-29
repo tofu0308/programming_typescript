@@ -260,6 +260,42 @@ console.log('型エイリアス ///////');
     let b: Color = 'yellow'
     console.log(b);
   }
-  
 }
 
+// 合併型と交差型
+console.log('合併型と交差型 ///////');
+{
+  type Cat = {
+    name: string,
+    purrs: boolean
+  }
+
+  type Dog = {
+    name: string,
+    barks: boolean,
+    wags: boolean
+  }
+  type CatOrDogOrBoth = Cat | Dog;
+  type CatAndDog = Cat & Dog;
+
+  let a: CatOrDogOrBoth = {
+    name: 'neko',
+    purrs: true
+  }
+  console.log(a);
+
+  a = {
+    name: 'inu',
+    barks: true,
+    wags: true
+  }
+  console.log(a);
+
+  a = {
+    name: 'neko',
+    barks: true,
+    purrs: true,
+    wags: true
+  }
+  console.log(a);
+}

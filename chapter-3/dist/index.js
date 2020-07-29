@@ -211,4 +211,26 @@ console.log('型エイリアス ///////');
         console.log(b);
     }
 }
+// 合併型と交差型
+console.log('合併型と交差型 ///////');
+{
+    let a = {
+        name: 'neko',
+        purrs: true
+    };
+    console.log(a);
+    a = {
+        name: 'inu',
+        barks: true,
+        wags: true
+    };
+    console.log(a);
+    a = {
+        name: 'neko',
+        barks: true,
+        purrs: true,
+        wags: true
+    };
+    console.log(a);
+}
 //# sourceMappingURL=index.js.map
