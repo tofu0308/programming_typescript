@@ -232,5 +232,24 @@ console.log('合併型と交差型 ///////');
         wags: true
     };
     console.log(a);
+    let b = {
+        name: "inu-neko",
+        barks: true,
+        purrs: true,
+        wags: true
+    };
+    console.log(b);
+    function trueOrNull(isTrue) {
+        if (isTrue)
+            return 'true';
+        return null;
+    }
+    console.log(trueOrNull(true));
+    console.log(trueOrNull(false));
+    function returns(a, b) {
+        return a || b;
+    }
+    console.log(returns('a', 2));
+    console.log(returns(null, 2));
 }
 //# sourceMappingURL=index.js.map
