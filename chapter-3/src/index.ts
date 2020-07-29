@@ -1,3 +1,5 @@
+import { type } from "os";
+
 function squareOf(n:number) {
   return n * n
 }
@@ -245,5 +247,19 @@ console.log('型エイリアス ///////');
   let color: Color = 'red';
   console.log(color);
 }
+{
+  type Color = 'yellow';
+  let x = Math.random() < .5
+  console.log(x);
 
+  if(x) {
+    type Color = 'purple';
+    let b: Color = 'purple'
+    console.log(b);
+  } else {
+    let b: Color = 'yellow'
+    console.log(b);
+  }
+  
+}
 

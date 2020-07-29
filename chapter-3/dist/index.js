@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 function squareOf(n) {
     return n * n;
 }
@@ -197,5 +198,17 @@ console.log('型エイリアス ///////');
     // type Color = 'blue' 識別子 'Color' が重複しています。ts(2300)
     let color = 'red';
     console.log(color);
+}
+{
+    let x = Math.random() < .5;
+    console.log(x);
+    if (x) {
+        let b = 'purple';
+        console.log(b);
+    }
+    else {
+        let b = 'yellow';
+        console.log(b);
+    }
 }
 //# sourceMappingURL=index.js.map
