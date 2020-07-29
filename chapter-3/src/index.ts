@@ -223,3 +223,27 @@ console.log('オブジェクト ///////');
   danger = 2
   console.log(danger);
 }
+
+// 型エイリアス
+console.log('型エイリアス ///////');
+{
+  type Age = number;
+  type Person = {
+    name: string
+    age: Age
+  }
+
+  let age: Age = 55;
+  let driver: Person = {
+    name: 'James May',
+    age: age
+  }
+  console.log(driver);
+
+  type Color = 'red'
+  // type Color = 'blue' 識別子 'Color' が重複しています。ts(2300)
+  let color: Color = 'red';
+  console.log(color);
+}
+
+

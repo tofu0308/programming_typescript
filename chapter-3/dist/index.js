@@ -185,4 +185,17 @@ console.log('オブジェクト ///////');
     danger = 2;
     console.log(danger);
 }
+// 型エイリアス
+console.log('型エイリアス ///////');
+{
+    let age = 55;
+    let driver = {
+        name: 'James May',
+        age: age
+    };
+    console.log(driver);
+    // type Color = 'blue' 識別子 'Color' が重複しています。ts(2300)
+    let color = 'red';
+    console.log(color);
+}
 //# sourceMappingURL=index.js.map
