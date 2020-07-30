@@ -322,3 +322,55 @@ console.log('合併型と交差型 ///////');
   console.log(returns(null, 2));
 
 }
+
+// 配列
+console.log('配列 ///////');
+{
+  let a = [1,2,3];
+  var ArrayB = ['a', 'b'];
+  let c: string[] = ['a']
+  let d = [1, 'a'];
+  const e = [2, 'b'];
+
+  let f = ['red'];
+  f.push('blue');
+  // f.push(true); 型 'true' の引数を型 'string' のパラメーターに割り当てることはできません。ts(2345)
+
+  let g = [] // any[]
+  g.push(1);
+  g.push('red');
+  g.push(true);
+
+  let h: number[] = [];
+  h.push(1);
+  // h.push('red'); 型 '"red"' の引数を型 'number' のパラメーターに割り当てることはできません。ts(2345)
+
+  console.log(a);
+  console.log(ArrayB);
+  console.log(c);
+  console.log(d);
+  console.log(e);
+  console.log(f);
+  console.log(g);
+  console.log(h);
+
+  const i = d.map(_ => {
+    if(typeof _ === 'number') {
+      return _ * 3
+    }
+    return _.toUpperCase();
+  });
+  console.log(i);
+
+  const buildArray = () => {
+    let a = [];
+    a.push(1);
+    a.push('x');
+    return a
+  }
+  console.log(buildArray());
+  let myArray = buildArray();
+  // myArray.push(true); 型 'true' の引数を型 'string | number' のパラメーターに割り当てることはできません。ts(2345)
+}
+
+
