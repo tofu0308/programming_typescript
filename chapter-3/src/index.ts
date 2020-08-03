@@ -373,4 +373,26 @@ console.log('配列 ///////');
   // myArray.push(true); 型 'true' の引数を型 'string | number' のパラメーターに割り当てることはできません。ts(2345)
 }
 
+// タプル
+console.log('タプル ///////');
+{
+  let a: [number] = [1];
+  let b: [string, string, number] = ['aa', 'bb', 2];
+  // b = ['aaa', 'bbb', 'ccc', 200]; 型 'string' を型 'number' に割り当てることはできません。ts(2322)
 
+  console.log(a);
+  console.log(b);
+
+  let trainFares: [number, number?][] = [
+    [3.75],
+    [8.25, 7.70],
+    [10, 50]
+  ]
+  console.log(trainFares);
+
+  let friends: [string, ...string[]] = ['Sara', 'Tail', 'Chole', 'Claire'];
+  let list: [number, boolean, ...string[]] = [2, false, 'a', 'b', 'c', 'd', 'e'];
+
+  console.log(friends);
+  console.log(list);
+}
