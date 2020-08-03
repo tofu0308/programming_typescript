@@ -413,3 +413,41 @@ console.log('タプル ///////');
   type D = readonly [number, string];
   type E = Readonly<[number, string]>;
 }
+
+// null,undefind,void,never
+console.log('null,undefind,void,never ///////');
+{
+  function a(x: number) {
+    if(x < 10) return x;
+    return null;
+  }
+
+  function b() {
+    return undefined;
+  }
+
+  function c() {
+    let a = 2 + 2
+    let b = a * a
+  }
+
+  function d() {
+    console.log('dが実行された')
+    // エラーで処理止まるので
+    // throw TypeError('I always Error');
+  }
+
+  function e() {
+    while(true) {
+      c();
+    }
+  }
+
+  console.log(a(2));
+  console.log(a(36));
+  console.log(b());
+  console.log(c());
+  console.log(d());
+  // 叩き続けてしまうので
+  // console.log(e());
+}
