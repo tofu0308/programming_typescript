@@ -313,5 +313,13 @@ console.log('タプル ///////');
     let list = [2, false, 'a', 'b', 'c', 'd', 'e'];
     console.log(friends);
     console.log(list);
+    let as = [1, 2, 3];
+    let bs = as.concat(4, 5, 6);
+    let three = bs[2];
+    // as[4] = 5; 型 'readonly number[]' のインデックス シグネチャは、読み取りのみを許可します。ts(2542)
+    // as.push(6); プロパティ 'push' は型 'readonly number[]' に存在しません。ts(2339)
+    console.log(as);
+    console.log(bs);
+    console.log(three);
 }
 //# sourceMappingURL=index.js.map
