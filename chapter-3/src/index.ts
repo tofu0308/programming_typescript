@@ -451,3 +451,37 @@ console.log('null,undefind,void,never ///////');
   // 叩き続けてしまうので
   // console.log(e());
 }
+
+// 列挙型
+console.log('列挙型 ///////');
+{
+  enum Language {
+    English = 0,
+    Spanish = 1,
+  }
+
+  // 分割が可能
+  enum Language {
+    Russian = 2
+  }
+
+  let myFirstLangage = Language.English;
+  let mySecondLanguage = Language.Russian;
+
+  console.log(myFirstLangage);
+  console.log(mySecondLanguage);
+
+  enum Color {
+    Red = '#c10000',
+    Blue = '#007ac1',
+    Pink = '0xc10050',
+    White = 255
+  }
+
+  let red = Color.Red;
+  let pink = Color.Pink;
+
+  console.log(red);
+  console.log(pink);
+}
+

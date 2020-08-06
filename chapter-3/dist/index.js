@@ -355,4 +355,32 @@ console.log('null,undefind,void,never ///////');
     // 叩き続けてしまうので
     // console.log(e());
 }
+// 列挙型
+console.log('列挙型 ///////');
+{
+    let Language;
+    (function (Language) {
+        Language[Language["English"] = 0] = "English";
+        Language[Language["Spanish"] = 1] = "Spanish";
+    })(Language || (Language = {}));
+    // 分割が可能
+    (function (Language) {
+        Language[Language["Russian"] = 2] = "Russian";
+    })(Language || (Language = {}));
+    let myFirstLangage = Language.English;
+    let mySecondLanguage = Language.Russian;
+    console.log(myFirstLangage);
+    console.log(mySecondLanguage);
+    let Color;
+    (function (Color) {
+        Color["Red"] = "#c10000";
+        Color["Blue"] = "#007ac1";
+        Color["Pink"] = "0xc10050";
+        Color[Color["White"] = 255] = "White";
+    })(Color || (Color = {}));
+    let red = Color.Red;
+    let pink = Color.Pink;
+    console.log(red);
+    console.log(pink);
+}
 //# sourceMappingURL=index.js.map
