@@ -531,3 +531,26 @@ console.log('列挙型 ///////');
   // enum の中に数値が一つでもあると、すべての数値が割り当て可能となり、enum全体が安全ではなくなる
 }
 
+{
+  let a = 1042 // number
+  let b = 'apple and oragnes' // string
+  const c = 'pineapples' // "pineapples"
+  let d = [true, true, true]  // boolean[]
+  let e = {type: 'ficus'} // type: string
+  let f = [1, false]  // (number | boolean)[] 
+  const g = [3] //  number[]
+  let h = null // any
+
+  let i:3 = 3
+  // i = 4; 型 '4' を型 '3' に割り当てることはできません。ts(2322)
+
+  let j = [1, 2, 3]
+  j.push(4)
+  // j.push('5') 型 '"5"' の引数を型 'number' のパラメーターに割り当てることはできません。ts(2345)
+
+  // let k: never = 4; 型 '4' を型 'never' に割り当てることはできません。ts(2322)
+
+  let l: unknown = 4
+  //  let m = l * 2; オブジェクト型は 'unknown' です。ts(2571)
+}
+
