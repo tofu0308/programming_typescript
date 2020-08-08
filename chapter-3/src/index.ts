@@ -483,5 +483,51 @@ console.log('列挙型 ///////');
 
   console.log(red);
   console.log(pink);
+
+  let a = Color.Red
+  // let b = Color.Green プロパティ 'Green' は型 'typeof Color' に存在しません。ts(2339)
+
+  let c = Color[255];
+  let d = Color[6];
+
+  console.log(a)
+  console.log(c)
+  console.log(d) // undefinedだがエラーにならない
+}
+
+{
+ const enum Language {
+   English,
+   Spanish,
+   Russian
+ } 
+
+ let a = Language.English;
+ // let b = Language.Tagalog; プロパティ 'Tagalog' は型 'typeof Language' に存在しません。ts(2339)
+ // let c = Language[0]; const 列挙型メンバーは、文字列リテラルを使用してのみアクセスできます。ts(2476)
+ // let d = Language[6]; const 列挙型メンバーは、文字列リテラルを使用してのみアクセスできます。ts(2476)
+
+ console.log(a);
+}
+
+{
+  const enum Flippable {
+    Burger = 'Burger',
+    Chair = 'Chair',
+    Cup = 'Cup',
+    Skatebord = 'Skatevord',
+    Table = 'Table'
+  }
+
+  function flip(f: Flippable) {
+    return 'fliped it'
+  }
+
+  console.log(flip(Flippable.Chair));
+  console.log(flip(Flippable.Cup));
+  // console.log(flip(Flippable.Hat)); プロパティ 'Hat' は型 'typeof Flippable' に存在しません。ts(2339)
+  // console.log(flip(12)); //型 '12' の引数を型 'Flippable' のパラメーターに割り当てることはできません。ts(2345)
+
+  // enum の中に数値が一つでもあると、すべての数値が割り当て可能となり、enum全体が安全ではなくなる
 }
 
