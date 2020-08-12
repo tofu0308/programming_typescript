@@ -83,4 +83,14 @@
     add.call(null, 10, 20);
     add.bind(null, 10, 20)();
 }
+// thisの型付け
+{
+    let x = {
+        a() {
+            return this;
+        }
+    };
+    let a = x.a;
+    console.log(a);
+}
 //# sourceMappingURL=index.js.map
