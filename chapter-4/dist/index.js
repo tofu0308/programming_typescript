@@ -85,12 +85,12 @@
 }
 // thisの型付け
 {
-    let x = {
-        a() {
-            return this;
-        }
-    };
-    let a = x.a;
-    console.log(a);
+    function fancyDate() {
+        const Date = `${this.getMonth() + 1}/${this.getDate()}/${this.getFullYear()}`;
+        console.log(Date);
+        return Date;
+    }
+    fancyDate.call(new Date);
+    // fancyDate(); 型 'void' の 'this' コンテキストを型 'Date' のメソッドの 'this' に割り当てることはできません。ts(2684)
 }
 //# sourceMappingURL=index.js.map
