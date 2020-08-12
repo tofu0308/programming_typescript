@@ -31,4 +31,6 @@
   console.log(greet4('greet4'));
   console.log(greet5('greet5'));
 
+  // console.log(add(1)); 2 個の引数が必要ですが、1 個指定されました。ts(2554)
+  // console.log(add(1, 'a')); 型 '"a"' の引数を型 'number' のパラメーターに割り当てることはできません。ts(2345)
 }
