@@ -67,3 +67,27 @@
   }
   log('patter3', {userId: '7g8h9i'})
 }
+
+// レストパラメーター
+{
+  function sum(numbers: number[]): number {
+    let total = numbers.reduce((total, n)=> total + n, 0);
+    console.log(total);
+    return total;
+  }
+
+  function sumVariadic(): number {
+    return Array.from(arguments).reduce((total, n)=> total + n, 0);
+  }
+
+  function sumVaridacSafe(...numbers: number[]): number {
+    let total = numbers.reduce((total, n) => total + n + 0);
+    console.log(total);
+    return total;
+  }
+
+  sum([1,2,3]);
+  // console.log((sumVariadic(1,2,3))); 0 個の引数が必要ですが、3 個指定されました。ts(2554)
+  sumVaridacSafe(1,2,3,4,5)
+
+}
