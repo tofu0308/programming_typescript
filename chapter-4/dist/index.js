@@ -71,4 +71,16 @@
     // console.log((sumVariadic(1,2,3))); 0 個の引数が必要ですが、3 個指定されました。ts(2554)
     sumVaridacSafe(1, 2, 3, 4, 5);
 }
+// call, apply, bind
+{
+    function add(a, b) {
+        let add = a + b;
+        console.log(add);
+        return add;
+    }
+    add(10, 20);
+    add.apply(null, [10, 20]);
+    add.call(null, 10, 20);
+    add.bind(null, 10, 20)();
+}
 //# sourceMappingURL=index.js.map
