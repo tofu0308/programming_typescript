@@ -96,24 +96,17 @@
 // generator
 {
     function* createFibonacciGenerator() {
-        let a = 1;
-        let b = 2;
+        let a = 0;
+        let b = 1;
         while (true) {
             yield a;
             [a, b] = [b, a + b];
         }
     }
     let fibonacciGenerator = createFibonacciGenerator();
-    console.log(fibonacciGenerator.next());
-    console.log(fibonacciGenerator.next());
-    console.log(fibonacciGenerator.next());
-    console.log(fibonacciGenerator.next());
-    console.log(fibonacciGenerator.next());
-    console.log(fibonacciGenerator.next());
-    console.log(fibonacciGenerator.next());
-    console.log(fibonacciGenerator.next());
-    console.log(fibonacciGenerator.next());
-    console.log(fibonacciGenerator.next());
-    console.log(fibonacciGenerator.next());
+    const c = 10;
+    for (let i = 0; i < c; i++) {
+        console.log(fibonacciGenerator.next());
+    }
 }
 //# sourceMappingURL=index.js.map
