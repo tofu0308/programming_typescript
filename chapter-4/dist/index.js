@@ -93,4 +93,27 @@
     fancyDate.call(new Date);
     // fancyDate(); 型 'void' の 'this' コンテキストを型 'Date' のメソッドの 'this' に割り当てることはできません。ts(2684)
 }
+// generator
+{
+    function* createFibonacciGenerator() {
+        let a = 1;
+        let b = 2;
+        while (true) {
+            yield a;
+            [a, b] = [b, a + b];
+        }
+    }
+    let fibonacciGenerator = createFibonacciGenerator();
+    console.log(fibonacciGenerator.next());
+    console.log(fibonacciGenerator.next());
+    console.log(fibonacciGenerator.next());
+    console.log(fibonacciGenerator.next());
+    console.log(fibonacciGenerator.next());
+    console.log(fibonacciGenerator.next());
+    console.log(fibonacciGenerator.next());
+    console.log(fibonacciGenerator.next());
+    console.log(fibonacciGenerator.next());
+    console.log(fibonacciGenerator.next());
+    console.log(fibonacciGenerator.next());
+}
 //# sourceMappingURL=index.js.map
