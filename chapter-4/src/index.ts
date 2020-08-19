@@ -148,4 +148,25 @@
     console.log(numbers.next());
   }
 
+  // iterator
+  let numbersIterator = {
+    *[Symbol.iterator]() {
+      for (let n = 0; n < 10; n++) {
+        yield n   
+      }
+    }
+  }
+  
+  console.log('// numbersIterator')
+  for (let d of numbersIterator) {
+    console.log(d)
+  }
+
+  let allNumbersIterator = [...numbersIterator] 
+  console.log(allNumbersIterator);
+
+  let [one, two, ...rest] = numbersIterator;
+  console.log(one, two, ...rest)
+
 }
+
