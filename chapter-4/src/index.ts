@@ -130,7 +130,22 @@
   let fibonacciGenerator = createFibonacciGenerator();
   
   const c: number = 10;
+  console.log('// fibonacciGenerator')
   for (let i = 0; i < c; i++) {
     console.log(fibonacciGenerator.next());
   }
+
+  function* createNumbers(): Generator<number> {
+    let n = 0;
+    while(1) {
+      yield n++;
+    }
+  }
+  
+  let numbers = createNumbers();
+  console.log('// numbers')
+  for (let i = 0; i < c; i++) {
+    console.log(numbers.next());
+  }
+
 }
