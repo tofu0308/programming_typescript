@@ -1,6 +1,6 @@
 "use strict";
-{
-    function add(a, b) {
+function add(a, b) {
+    {
         return a + b;
     }
     // 名前付き関数
@@ -128,7 +128,7 @@
             }
         }
     };
-    console.log('numbersIterator');
+    console.log('// numbersIterator');
     for (let d of numbersIterator) {
         console.log(d);
     }
@@ -136,5 +136,23 @@
     console.log(allNumbersIterator);
     let [one, two, ...rest] = numbersIterator;
     console.log(one, two, ...rest);
+}
+// 呼び出しシグネチャ
+{
+    function area(radius) {
+        if (radius < 0)
+            return null;
+        return Math.PI * (radius ** 2);
+    }
+    let r = 3;
+    let a = area(r);
+    if (a !== null) {
+        console.info('result', a);
+    }
+    let log = (message, userId = 'Not signed in') => {
+        let time = new Date().toISOString();
+        console.log(time, message, userId);
+    };
+    log('message,string', '123456');
 }
 //# sourceMappingURL=index.js.map

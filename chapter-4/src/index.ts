@@ -1,5 +1,5 @@
-{
-  function add(a: number, b: number): number {
+function add(a: number, b: number): number {
+  {
     return a + b;
   }
 
@@ -167,6 +167,35 @@
 
   let [one, two, ...rest] = numbersIterator;
   console.log(one, two, ...rest)
-
 }
 
+// 呼び出しシグネチャ
+{
+  type add = (a: number, b: number) => number;
+
+   function area(radius: number):number | null {
+     if(radius < 0) return null
+     return  Math.PI *  ( radius ** 2 )
+   }
+  let r: number = 3
+  let a = area(r);
+
+  if(a !== null) {
+    console.info('result', a)
+  }
+
+  // function freet(name: string)
+  type Greet = (name: string) => string
+
+  // function log(message: string, userId?: string)
+  type Log = (message: string, userID?: string) => void
+  let log: Log = (message, userId = 'Not signed in') => {
+    let time = new Date().toISOString()
+    console.log(time, message, userId)
+  }
+  log('message,string', '123456');
+
+  // function sumVariadicSafe(...numbers: number[]): number
+  type sumVariadicSafe = (...numbers: number[]) => number
+
+}
