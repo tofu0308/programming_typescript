@@ -155,4 +155,19 @@ function add(a, b) {
     };
     log('message,string', '123456');
 }
+//  文脈的型付け
+{
+    function times(f, n) {
+        for (let i = 0; i < n; i++) {
+            f(i);
+        }
+    }
+    times(n => console.info('times', n), 6);
+    /*
+    function f(n) { // パラメーター 'n' の型は暗黙的に 'any' になります。ts(7006)
+      console.log(n)
+    }
+    times(f, 4)
+    */
+}
 //# sourceMappingURL=index.js.map
