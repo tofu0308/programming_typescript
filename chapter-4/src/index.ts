@@ -1,3 +1,5 @@
+import { REPLServer } from "repl";
+
 function add(a: number, b: number): number {
   {
     return a + b;
@@ -218,4 +220,45 @@ function add(a: number, b: number): number {
   }
   times(f, 4)
   */
+}
+
+// オーバーロード
+{
+  /*
+
+  type Reserve = {
+    (form: Date,  to: Date,destination: string): Reservation
+    (from: Date, destination: string): Reservation
+  }
+
+  // type Reservation = (hoge: string)
+  let reserve: Reserve = (
+    from: Date,
+    to: Date,
+    toOrDestination: string,
+    destination?: string
+  ) => {
+    if( toOrDestination instanceof Date && destination !== undefined) {
+      // 宿泊旅行を予約する
+    }else if(typeof toOrDestination === 'string') {
+      // 日帰り旅行を予約する
+    }
+  };
+
+   function warnUser(warning: string) {
+    if(warnUser.wasCalled) return;
+    
+    warnUser.wasCalled = true;
+    console.log(warning);
+  }
+  warnUser.wasCalled = false;
+
+  type WarnUser = {
+    (warning: string): void
+    wasCalled: boolean
+  }
+
+  const assignedWarnUser: WarnUser = warnUser
+   */
+
 }
