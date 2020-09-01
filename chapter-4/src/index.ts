@@ -262,3 +262,33 @@ function add(a: number, b: number): number {
    */
 
 }
+
+// ポリモーフィズム
+{
+  type Filter = {
+    <T>(array: T[]|undefined, f:(item: T) => boolean|undefined): T[]|undefined
+  }
+  
+  let filter: Filter = (array, f) => {
+    let result = [];
+    for(let i = 0; i < array!.length; i++) {
+      let item = array![i]
+      if(f(item)) {
+        result.push(item)
+      }
+    }
+      console.log(result)
+      return result    
+  }
+
+  filter([1,2,3,4], _ => _ < 3)
+  filter([1,2,3], _ => _ > 2)
+  filter(['a', 'b'], _ => _ !== 'b')
+
+  let names = [
+    {firstName: 'a氏'},
+    {firstName: 'b氏'},
+    {firstName: 'c氏'},
+  ]
+  filter(names, _ => _.firstName.startsWith('b'))
+}
