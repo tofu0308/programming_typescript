@@ -233,4 +233,26 @@ function add(a, b) {
     ];
     filter(names, _ => _.firstName.startsWith('b'));
 }
+{
+    let a = (A2, A3) => {
+        console.log(typeof A2, typeof A3);
+    };
+    a(2, 3);
+    let b = (B2, B3) => {
+        console.log(typeof B2, typeof B3);
+    };
+    b('bb', 'bbb');
+    let c = (C2, C3) => {
+        console.log(typeof C2, typeof C3);
+    };
+    c(true, false);
+    let d = (D2, D3) => {
+        console.log(typeof D2, typeof D3);
+    };
+    d(null, undefined);
+    let e = function (E2, E3) {
+        console.log(typeof E2, typeof E3);
+    };
+    e(2, 3);
+}
 //# sourceMappingURL=index.js.map

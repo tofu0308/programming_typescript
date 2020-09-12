@@ -266,7 +266,7 @@ function add(a: number, b: number): number {
 // ポリモーフィズム
 {
   type Filter = {
-    <T>(array: T[]|undefined, f:(item: T) => boolean|undefined): T[]|undefined
+    <T>(array: T[], f:(item: T) => boolean): T[]
   }
   
   let filter: Filter = (array, f) => {
@@ -292,3 +292,41 @@ function add(a: number, b: number): number {
   ]
   filter(names, _ => _.firstName.startsWith('b'))
 }
+
+{
+  type A = {
+    <T>(A2:T, A3:T): void
+  }  
+  let a:A = (A2, A3) => {
+    console.log(typeof A2, typeof A3)
+  }
+  a(2,3)
+
+  type B<T> = {
+    (B2: T, B3: T):void
+  }
+  let b:B<string> = (B2, B3) => {
+    console.log(typeof B2, typeof B3) 
+  }
+  b('bb', 'bbb')
+
+  // type A の省略記法
+  type C = <T>(C2:T, C3:T) => void;
+  let c:C = (C2, C3) => {
+    console.log(typeof C2, typeof C3)  
+  }
+  c(true, false)
+
+  // type Bの省略記法
+  type D<T> = (D2: T, D3: T) => void;
+  let d:D<null | undefined> = (D2, D3) => {
+    console.log(typeof D2, typeof D3)  
+  }
+  d(null, undefined);
+
+  let e = function<T> (E2:T, E3:T) {
+    console.log(typeof E2, typeof E3)  
+  }
+  e(2, 3)
+}
+
