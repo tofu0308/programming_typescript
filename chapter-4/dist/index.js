@@ -274,5 +274,6 @@ function add(a, b) {
     }
     map(['a', 'b', 'c'], (_) => _ === 'a');
     map2([1, 2, 3], (_) => _ === 2);
+    map2([1, 2, 3], (_) => _ === 2);
 }
 //# sourceMappingURL=index.js.map

@@ -357,4 +357,8 @@ function add(a: number, b: number): number {
     (_) =>  _ === 2
   )
 
+  map2<number,boolean>([1, 2, 3],
+    (_) =>  _ === 2
+  )
+
 }
