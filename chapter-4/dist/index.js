@@ -283,4 +283,18 @@ function add(a, b) {
     let a = promise2.then(result => result * 4);
     console.log(a);
 }
+// ジェネリック型エイリアス
+{
+    let myEvent = {
+        target: document.querySelector('#myButton'),
+        type: 'clcik'
+    };
+    function triggerEvent(event) {
+        // ここに処理とか書く
+    }
+    triggerEvent({
+        target: document.querySelector('#myButton'),
+        type: 'mouseover'
+    });
+}
 //# sourceMappingURL=index.js.map

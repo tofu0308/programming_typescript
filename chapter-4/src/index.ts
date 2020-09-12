@@ -370,3 +370,33 @@ function add(a: number, b: number): number {
    console.log(a)
 
 }
+
+// ジェネリック型エイリアス
+// typescriptエラーではないけどdocumentが存在しないのでエラーになる
+/*
+{
+  type MyEvent<T> = {
+    target: T
+    type: string
+  }
+  let myEvent: MyEvent<HTMLButtonElement | null> = {
+    target: document.querySelector('#myButton'),
+    type: 'clcik'
+  }
+
+  type TimedEvent<T> = {
+    event: MyEvent<T>
+    from: Date
+    to: Date
+  }
+
+  function triggerEvent<T>(event: MyEvent<T>):void {
+    // ここに処理とか書く
+  }
+
+  triggerEvent({
+    target: document.querySelector('#myButton'),
+    type: 'mouseover' 
+  })
+}
+*/
