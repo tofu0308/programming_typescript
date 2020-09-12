@@ -255,4 +255,24 @@ function add(a, b) {
     };
     e(2, 3);
 }
+{
+    function map(array, f) {
+        let result = [];
+        for (let i = 0; i < array.length; i++) {
+            result[i] = f(array[i]);
+        }
+        console.log(result);
+        return result;
+    }
+    function map2(array, f) {
+        let result = [];
+        for (let i = 0; i < array.length; i++) {
+            result[i] = f(array[i]);
+        }
+        console.log(result);
+        return result;
+    }
+    map(['a', 'b', 'c'], (_) => _ === 'a');
+    map2([1, 2, 3], (_) => _ === 2);
+}
 //# sourceMappingURL=index.js.map
