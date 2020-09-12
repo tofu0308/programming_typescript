@@ -360,5 +360,13 @@ function add(a: number, b: number): number {
   map2<number,boolean>([1, 2, 3],
     (_) =>  _ === 2
   )
+}
+{
+  let promise = new Promise(resolve => resolve(45));
+   // promise.then(result => result * 4) オブジェクト型は 'unknown' です。ts(2571)
+
+  let promise2 = new Promise<number>(resolve => resolve(45));
+   let a = promise2.then(result => result * 4)
+   console.log(a)
 
 }

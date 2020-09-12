@@ -276,4 +276,11 @@ function add(a, b) {
     map2([1, 2, 3], (_) => _ === 2);
     map2([1, 2, 3], (_) => _ === 2);
 }
+{
+    let promise = new Promise(resolve => resolve(45));
+    // promise.then(result => result * 4) オブジェクト型は 'unknown' です。ts(2571)
+    let promise2 = new Promise(resolve => resolve(45));
+    let a = promise2.then(result => result * 4);
+    console.log(a);
+}
 //# sourceMappingURL=index.js.map
