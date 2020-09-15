@@ -284,17 +284,51 @@ function add(a, b) {
     console.log(a);
 }
 // ジェネリック型エイリアス
+// typescriptエラーではないけどdocumentが存在しないのでエラーになる
+/*
 {
-    let myEvent = {
-        target: document.querySelector('#myButton'),
-        type: 'clcik'
-    };
-    function triggerEvent(event) {
-        // ここに処理とか書く
+  type MyEvent<T> = {
+    target: T
+    type: string
+  }
+  let myEvent: MyEvent<HTMLButtonElement | null> = {
+    target: document.querySelector('#myButton'),
+    type: 'clcik'
+  }
+
+  type TimedEvent<T> = {
+    event: MyEvent<T>
+    from: Date
+    to: Date
+  }
+
+  function triggerEvent<T>(event: MyEvent<T>):void {
+    // ここに処理とか書く
+  }
+
+  triggerEvent({
+    target: document.querySelector('#myButton'),
+    type: 'mouseover'
+  })
+}
+*/
+//  制限付きポリモーフィズム
+{
+    let a = { value: 'a' };
+    let b = { value: 'b', isLeaf: true };
+    let c = { value: 'c', children: [b] };
+    let a1 = mapNode(a, _ => _.toUpperCase());
+    let b1 = mapNode(b, _ => _.toUpperCase());
+    let c1 = mapNode(c, _ => _.toUpperCase());
+    function mapNode(node, f) {
+        return {
+            ...node,
+            value: f(node.value)
+        };
     }
-    triggerEvent({
-        target: document.querySelector('#myButton'),
-        type: 'mouseover'
-    });
+    console.log(a1);
+    console.log(b1);
+    console.log(c1);
+    console.log(typeof a1);
 }
 //# sourceMappingURL=index.js.map
