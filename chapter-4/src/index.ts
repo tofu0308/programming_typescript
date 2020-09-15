@@ -435,5 +435,16 @@ function add(a: number, b: number): number {
   console.log(b1)
   console.log(c1)
 
-  
+  //  複数の制約を持つ制限付きポリモーフィズム
+  type HasSides = { numberOfSides: number }
+  type SidesHaveLebgth = { SideLength: number }
+
+  function LogPerimeter<Shape extends HasSides & SidesHaveLebgth>(s: Shape): Shape {
+    console.log(s.numberOfSides * s.SideLength)
+    return s
+  }
+
+  type Squre = HasSides & SidesHaveLebgth
+  let square: Squre = { numberOfSides: 4, SideLength: 3 }
+  LogPerimeter(square);
 }

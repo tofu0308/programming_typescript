@@ -329,6 +329,11 @@ function add(a, b) {
     console.log(a1);
     console.log(b1);
     console.log(c1);
-    console.log(typeof a1);
+    function LogPerimeter(s) {
+        console.log(s.numberOfSides * s.SideLength);
+        return s;
+    }
+    let square = { numberOfSides: 4, SideLength: 3 };
+    LogPerimeter(square);
 }
 //# sourceMappingURL=index.js.map
