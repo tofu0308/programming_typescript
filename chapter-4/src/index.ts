@@ -448,3 +448,23 @@ function add(a: number, b: number): number {
   let square: Squre = { numberOfSides: 4, SideLength: 3 }
   LogPerimeter(square);
 }
+
+// 制限付きポリモーフィズムを使って、可変長引数をモデル化する
+{
+  function call<T extends unknown[], R>(
+    f:(...args: T) => R,
+    ...args: T
+  ): R {
+    return f(...args)
+  }
+
+  function fill(length: number, value: string) {
+    return Array.from({length}, () => value);
+  }
+
+  let a = call(fill, 10, 'a');
+  // let b = call(fill, 10, ); let b = call(fill, 10, 'a');
+  // let c = call(fill, 10, 'a', 2); 3 個の引数が必要ですが、4 個指定されました。ts(2554)
+
+  console.log(a);
+}
