@@ -349,4 +349,38 @@ function add(a, b) {
     // let c = call(fill, 10, 'a', 2); 3 個の引数が必要ですが、4 個指定されました。ts(2554)
     console.log(a);
 }
+// ジェネリック型のデフォルトの型
+/*
+{
+  type MyEvent<T extends HTMLElement = HTMLElement> = {
+    target: T|null
+    type: string
+  }
+  let myElement: HTMLElement|null = document.querySelector('#myButton')
+  
+  let myEvent: MyEvent = {
+    target: myElement,
+    type: 'clcik'
+  }
+
+  // 有効
+  type MyEvent2<
+    Type extends string,
+    Target extends HTMLElement = HTMLElement
+  > = {
+    target: Target,
+    type: Type
+  }
+
+   // 無効
+   type myEvent3<
+    Target extends HTMLElement = HTMLElement,
+    Type extends string // 必須の型パラメーターの後に、オプションの型パラメーターを続けることはできません。ts(2706)
+
+    > = {
+      target: Target,
+      type: Type
+    }
+}
+*/
 //# sourceMappingURL=index.js.map
