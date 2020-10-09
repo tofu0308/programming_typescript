@@ -503,3 +503,9 @@ function add(a: number, b: number): number {
     }  
 }
 */
+// 型駆動開発
+{
+  function map<T, U>(array:T[], f:(item: T) => U):U[] {
+    return []
+  }
+}

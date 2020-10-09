@@ -383,4 +383,10 @@ function add(a, b) {
     }
 }
 */
+// 型駆動開発
+{
+    function map(array, f) {
+        return [];
+    }
+}
 //# sourceMappingURL=index.js.map
