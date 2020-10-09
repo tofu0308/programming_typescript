@@ -509,3 +509,31 @@ function add(a: number, b: number): number {
     return []
   }
 }
+　// 練習問題
+{
+
+  type Reservation = unknown
+  type Reserve = {
+    (from: Date, to: Date, destination: string):Reservation
+    (from: Date, destination: string):Reservation
+    (destination: string):Reservation
+  }
+
+  let reserve: Reserve = (
+    fromOrDestination: Date|string,
+    toOrDestination?: Date|string,
+    destination?: string
+  ) => {
+    if(fromOrDestination instanceof Date && toOrDestination instanceof Date && destination !== undefined) {
+      console.log(`${fromOrDestination}~${toOrDestination}:${destination}へ宿泊旅行を予約する`)
+    } else if(fromOrDestination instanceof Date && typeof toOrDestination === 'string') {
+      console.log(`${fromOrDestination}:${toOrDestination}へ日帰り旅行を予約する`)
+    } else if(typeof fromOrDestination === 'string'){
+      console.log(`${fromOrDestination} へすぐ出発する旅行を予約する`)
+    }
+  }
+  reserve(new Date, new Date, 'Fukuoka')
+  reserve(new Date, 'Fukuoka')
+  reserve('Fukuoka')
+
+}
