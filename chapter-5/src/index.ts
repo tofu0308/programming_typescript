@@ -1,3 +1,5 @@
+import { isBoolean } from "util"
+
 // クラスと継承
 {
   // チェスのゲームを表します
@@ -77,6 +79,36 @@
   type Rank = 1|2|3|4|5|6|7|8
 
   // new Piece('White', 'E', 1) 抽象クラスのインスタンスは作成できません。ts(2511)
+}
 
+{
+  let set = new Set
+  set.add(1).add(2).add(3)
 
+  console.log(set)
+  let setA = set.has(2)
+  let setB = set.has(4)
+
+  console.log(setA)
+  console.log(setB)
+}
+
+{
+  class Set {
+    has(value: number): boolean {
+      return this.has(value)
+    }
+    add(value: number): this {
+     return this
+    }
+  }
+  
+  class MutableSet extends Set {
+    delete(value: number): boolean {
+      return this.delete(value)
+    }
+    add(value: number): this {
+      return this
+     }
+  }
 }
