@@ -535,5 +535,21 @@ function add(a: number, b: number): number {
   reserve(new Date, new Date, 'Fukuoka')
   reserve(new Date, 'Fukuoka')
   reserve('Fukuoka')
+}
+
+{
+  function call<T extends[unknown, string, ...unknown[]], R>(
+    f:(...args: T) => R,
+    ...args: T
+  ): R {
+    return f(...args)
+  }
+
+  function fill(length: number, value: string) {
+    return Array.from({length}, () => value);
+  }
+
+  let a = call(fill, 6, 'string');
+  console.log(a);
 
 }

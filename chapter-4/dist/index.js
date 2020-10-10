@@ -406,4 +406,14 @@ function add(a, b) {
     reserve(new Date, 'Fukuoka');
     reserve('Fukuoka');
 }
+{
+    function call(f, ...args) {
+        return f(...args);
+    }
+    function fill(length, value) {
+        return Array.from({ length }, () => value);
+    }
+    let a = call(fill, 6, 'string');
+    console.log(a);
+}
 //# sourceMappingURL=index.js.map
