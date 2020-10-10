@@ -416,4 +416,19 @@ function add(a, b) {
     let a = call(fill, 6, 'string');
     console.log(a);
 }
+{
+    function is(a, ...b) {
+        let comparison = b.every(_ => _ === a);
+        console.log(comparison);
+        return comparison;
+    }
+    is('string', 'otherstring');
+    is('string', 'string');
+    is(true, false);
+    is(42, 42);
+    // is(10, 'string') 型 '"string"' の引数を型 'number' のパラメーターに割り当てることはできません。ts(2345)
+    is(1, 1, 1);
+    is([], [], []);
+    is([1], [1, 2], [1, 2, 3]);
+}
 //# sourceMappingURL=index.js.map
