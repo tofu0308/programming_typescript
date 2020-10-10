@@ -73,4 +73,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
         }
     }
 }
+{
+}
+{
+    /*
+    interface IB extends IA {
+      good(x: number): string
+      bad(x: string): string
+    }
+  インターフェイス 'IB' はインターフェイス 'IA' を正しく拡張していません。
+    プロパティ 'bad' の型に互換性がありません。
+      型 '(x: string) => string' を型 '(x: number) => string' に割り当てることはできません。
+        パラメーター 'x' および 'x' は型に互換性がありません。
+          型 'number' を型 'string' に割り当てることはできません。ts(2430)
+    */
+}
 //# sourceMappingURL=index.js.map

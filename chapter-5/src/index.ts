@@ -112,3 +112,68 @@ import { isBoolean } from "util"
      }
   }
 }
+
+{
+  type Sushi = {
+    calolies: number
+    salty: boolean
+    tasty: boolean
+  }
+
+  interface ISushi {
+    calolies: number
+    salty: boolean
+    tasty: boolean
+  }
+
+  type Cake =　{
+    calolies: number
+    sweet: boolean
+    tasty: boolean
+  }
+}
+
+{
+  type Food = {
+    calolie: number
+    tasty: boolean
+  }
+  type Sushi = Food & {
+    salty: boolean
+  }
+  type Cake = Food & {
+    sweet: boolean
+  }
+
+  interface IFood {
+    calolie: number
+    tasty: boolean
+  }
+  interface ISushi extends IFood {
+    salty: boolean
+  }
+  interface ICake extends IFood {
+    sweet: boolean
+  }
+
+  // 下記のパターンをinterfaceとして書き直す方法はない
+  type A = number
+  type B = A| string
+
+  interface IA {
+    good(x: number): string
+    bad(x: number): string
+  }
+  /*
+  interface IB extends IA {
+    good(x: number): string
+    bad(x: string): string
+  }
+インターフェイス 'IB' はインターフェイス 'IA' を正しく拡張していません。
+  プロパティ 'bad' の型に互換性がありません。
+    型 '(x: string) => string' を型 '(x: number) => string' に割り当てることはできません。
+      パラメーター 'x' および 'x' は型に互換性がありません。
+        型 'number' を型 'string' に割り当てることはできません。ts(2430)
+  */
+
+}
