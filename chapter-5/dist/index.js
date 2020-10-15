@@ -88,4 +88,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
           型 'number' を型 'string' に割り当てることはできません。ts(2430)
     */
 }
+{
+    let a = {
+        name: 'namae',
+        age: 40
+    };
+    console.log(a);
+    // interface User3<Age extends string> {age: Age} 'User3' のすべての宣言には、同一の型パラメーターがある必要があります。ts(2428)
+}
 //# sourceMappingURL=index.js.map

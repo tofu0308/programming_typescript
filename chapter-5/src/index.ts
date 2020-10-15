@@ -175,5 +175,29 @@ import { isBoolean } from "util"
       パラメーター 'x' および 'x' は型に互換性がありません。
         型 'number' を型 'string' に割り当てることはできません。ts(2430)
   */
+}
+{
+  // 宣言のマージ
+  interface User {
+    name: string
+  }
 
+  interface User {
+    age: number
+  }
+
+  let a: User ={
+    name: 'namae',
+    age: 40
+  }
+  console.log(a)
+
+  // type UserType = {name: string} 識別子 'UserType' が重複しています。ts(2300)
+  // type UserType = {age: number} 識別子 'UserType' が重複しています。ts(2300)
+
+  interface User2 {age: string}
+  // interface User2 {age: number} 後続のプロパティ宣言は同じ型でなければなりません。プロパティ 'age' の型は 'string' である必要がありますが、ここでは型が 'number' になっています。ts(2717)
+
+  interface User3<Age extends number> {age: Age}
+  // interface User3<Age extends string> {age: Age} 'User3' のすべての宣言には、同一の型パラメーターがある必要があります。ts(2428)
 }
