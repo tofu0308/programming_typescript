@@ -201,3 +201,33 @@ import { isBoolean } from "util"
   interface User3<Age extends number> {age: Age}
   // interface User3<Age extends string> {age: Age} 'User3' のすべての宣言には、同一の型パラメーターがある必要があります。ts(2428)
 }
+
+ {
+   interface Animal {
+    readonly name: string 
+    eat(food: string): void
+    sleep(hours: number): void
+   }
+
+    interface Feline { meow(): void}
+
+    class Cat implements Animal, Feline {
+      name = 'neko'
+      eat(food: string) {
+        console.info('Ate some', food, '. Mmm!')
+      }
+      sleep(hours: number) {
+        console.info('Slept for', hours, 'hours')
+      }
+      meow() {
+        console.info('nekooo')
+      }
+    }
+
+    const cat = new Cat()
+    console.log(cat)
+    console.log(cat.name)
+    console.log(cat.eat('肉'))
+    console.log(cat.sleep(36))
+    console.log(cat.meow())
+ }
