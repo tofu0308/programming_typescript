@@ -118,4 +118,41 @@ Object.defineProperty(exports, "__esModule", { value: true });
     console.log(cat.sleep(36));
     console.log(cat.meow());
 }
+// クラスは構造的に型付けされる
+{
+    class Zebra {
+        trot() {
+            console.log('aaa');
+        }
+    }
+    class Poodle {
+        trot() {
+            console.log('aaa');
+        }
+    }
+    function ambleAround(animal) {
+        animal.trot();
+    }
+    let zebra = new Zebra;
+    let poodle = new Poodle;
+    ambleAround(zebra);
+    ambleAround(poodle);
+}
+{
+    class A {
+        constructor() {
+            this.x = 1;
+        }
+    }
+    class B extends A {
+    }
+    function f(a) { }
+    f(new A);
+    f(new B);
+    // f({x: 1})
+    /*
+      型 '{ x: number; }' の引数を型 'A' のパラメーターに割り当てることはできません。
+      プロパティ 'x' は型 'A' ではプライベートですが、型 '{ x: number; }' ではプライベートではありません。ts(2345)
+    */
+}
 //# sourceMappingURL=index.js.map

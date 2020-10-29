@@ -1,4 +1,5 @@
 import { isBoolean } from "util"
+import { Z_ASCII } from "zlib"
 
 // クラスと継承
 {
@@ -206,7 +207,7 @@ import { isBoolean } from "util"
    interface Animal {
     readonly name: string 
     eat(food: string): void
-    sleep(hours: number): void
+    sleep(hours: number): void  
    }
 
     interface Feline { meow(): void}
@@ -231,3 +232,43 @@ import { isBoolean } from "util"
     console.log(cat.sleep(36))
     console.log(cat.meow())
  }
+
+// クラスは構造的に型付けされる
+ {
+  class Zebra {
+    trot() {
+      console.log('aaa');
+    }
+  }
+
+  class Poodle {
+    trot() {
+      console.log('aaa');
+    }
+  }
+
+  function ambleAround(animal: Zebra) {
+    animal.trot()
+  }
+
+  let zebra = new Zebra
+  let poodle = new Poodle
+   ambleAround(zebra)
+   ambleAround(poodle)
+}
+
+{
+  class A { private x = 1 }
+  class B extends A {}
+  function f(a:A) {}
+
+  f(new A)
+  f(new B)
+  // f({x: 1})
+  /*
+    型 '{ x: number; }' の引数を型 'A' のパラメーターに割り当てることはできません。
+    プロパティ 'x' は型 'A' ではプライベートですが、型 '{ x: number; }' ではプライベートではありません。ts(2345)
+  */
+
+}
+
