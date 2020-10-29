@@ -155,4 +155,41 @@ Object.defineProperty(exports, "__esModule", { value: true });
       プロパティ 'x' は型 'A' ではプライベートですが、型 '{ x: number; }' ではプライベートではありません。ts(2345)
     */
 }
+// クラスは値と型の両方を宣言する
+{
+    class C {
+    }
+    let c = new C;
+    let E;
+    (function (E) {
+        E[E["F"] = 0] = "F";
+        E[E["G"] = 1] = "G";
+    })(E || (E = {}));
+    let e = E.F;
+    class StringDatabase {
+        constructor(state = {}) {
+            this.state = state;
+        }
+        get(key) {
+            return key in this.state ? this.state[key] : null;
+        }
+        set(key, value) {
+            this.state[key] = value;
+        }
+        static from(state) {
+            let db = new StringDatabase;
+            for (let key in state) {
+                db.set(key, state[key]);
+            }
+            return db;
+        }
+    }
+    let db = new StringDatabase({
+        '1': 'a',
+        '2': 'b',
+        '3': 'c',
+        '4': 'd'
+    });
+    console.log(db);
+}
 //# sourceMappingURL=index.js.map

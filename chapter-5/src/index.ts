@@ -269,6 +269,53 @@ import { Z_ASCII } from "zlib"
     型 '{ x: number; }' の引数を型 'A' のパラメーターに割り当てることはできません。
     プロパティ 'x' は型 'A' ではプライベートですが、型 '{ x: number; }' ではプライベートではありません。ts(2345)
   */
-
 }
 
+// クラスは値と型の両方を宣言する
+{
+  class C {}
+  let c: C = new C
+
+  enum E {F, G}
+  let e: E = E.F
+
+
+
+  type State = {
+    [key: string]: string
+  }
+  interface StringDatabase {
+    state: State
+    get(key: string): string | null
+    set(key: string, value: string): void
+  }
+  interface StringDatabaseConstructor{
+    new(state?: State): StringDatabase
+    from(state: State): StringDatabase
+  }
+  
+  class StringDatabase {
+    constructor(public state: State = {}) {}
+    get(key: string): string | null {
+      return key in this.state ? this.state[key] : null
+    }
+    set(key: string, value: string): void {
+      this.state[key] = value
+    }
+    static from(state: State) {
+      let db = new StringDatabase
+      for(let key in state) {
+        db.set(key, state[key])
+      }
+      return db
+    }
+  }
+
+  let db = new StringDatabase({
+    '1':'a',
+    '2':'b',
+    '3':'c',
+    '4':'d'
+  })
+  console.log(db)
+}
