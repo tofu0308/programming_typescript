@@ -344,3 +344,41 @@ import { Z_ASCII } from "zlib"
    console.log (a.get('k'))
    console.log (b.set('k', false))
 }
+
+// ミックスイン
+{
+  type ClassConstructor<T> = new(...args: any[]) => T
+
+  // class User {}
+
+  function withEZDebug<C extends ClassConstructor<{getDebugValue(): object}>>(Class: C) {
+    return class extends Class {
+      debug() {
+        let Name = this.constructor.name
+        let value = this.getDebugValue()
+        return `${Name}(${JSON.stringify(value)})`
+      }
+      constructor(...args: any[]) {
+        super(...args)
+      }
+    }
+  }
+
+  class HardToDebugUser {
+    constructor(
+      private id: number,
+      private firstName: string,
+      private lastName: string
+    ){}
+    getDebugValue() {
+      return {
+        id: this.id,
+        name: `${this.firstName} ${this.lastName}`
+      }
+    }
+  }
+
+  let User = withEZDebug(HardToDebugUser)
+  let user = new User(3, 'FN', 'LN')
+  console.log(user.debug())
+}
