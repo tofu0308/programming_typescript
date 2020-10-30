@@ -319,3 +319,28 @@ import { Z_ASCII } from "zlib"
   })
   console.log(db)
 }
+
+// ポリモーフィズム
+{
+
+  interface MyMap<K, V> {
+    get(key: K):  void
+    set(key: K, value: V): void
+  }
+
+  class MyMap<K, V>  {
+    constructor(initialKey: K, initialValue: V) {}
+    get(key: K){ return key }
+    set(key:K, value: V){return `${key}/${value}`}
+    merge<K1, V1>(map: MyMap<K1, V1>): MyMap<K|K1, V|V1>{
+      return map;
+    }
+    static of<K, V>(k: K, v: V){}
+  }
+
+  let a = new MyMap<string, number>('k', 1)
+  let b = new MyMap('k', true)
+
+   console.log (a.get('k'))
+   console.log (b.set('k', false))
+}

@@ -192,4 +192,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
     });
     console.log(db);
 }
+// ポリモーフィズム
+{
+    class MyMap {
+        constructor(initialKey, initialValue) { }
+        get(key) { return key; }
+        set(key, value) { return `${key}/${value}`; }
+        merge(map) {
+            return map;
+        }
+        static of(k, v) { }
+    }
+    let a = new MyMap('k', 1);
+    let b = new MyMap('k', true);
+    console.log(a.get('k'));
+    console.log(b.set('k', false));
+}
 //# sourceMappingURL=index.js.map
