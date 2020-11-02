@@ -1,4 +1,10 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 // クラスと継承
 {
@@ -239,5 +245,29 @@ Object.defineProperty(exports, "__esModule", { value: true });
     let User = withEZDebug(HardToDebugUser);
     let user = new User(3, 'FN', 'LN');
     console.log(user.debug());
+}
+// デコレーター
+{
+    let APIPayload = class APIPayload {
+        getValue() {
+            return 15; // 何でもいいけど文字列以外のものを返す
+        }
+    };
+    APIPayload = __decorate([
+        serializable
+    ], APIPayload);
+    function serializable(Constructor) {
+        return class extends Constructor {
+            serialize() {
+                return this.getValue().toString();
+            }
+        };
+    }
+    let DecoratedAPIPayload = serializable(APIPayload);
+    let payload = new DecoratedAPIPayload;
+    let payloadSerialize = payload.serialize();
+    // let serialized = payload.serialize() プロパティ 'serialize' は型 'APIPayload' に存在しません。ts(2339)
+    console.log(payloadSerialize);
+    console.log(typeof payloadSerialize);
 }
 //# sourceMappingURL=index.js.map

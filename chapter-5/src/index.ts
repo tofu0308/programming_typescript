@@ -1,5 +1,6 @@
 import { isBoolean } from "util"
 import { Z_ASCII } from "zlib"
+import { serialize } from "v8"
 
 // クラスと継承
 {
@@ -381,4 +382,36 @@ import { Z_ASCII } from "zlib"
   let User = withEZDebug(HardToDebugUser)
   let user = new User(3, 'FN', 'LN')
   console.log(user.debug())
+}
+
+// デコレーター
+{
+  @serializable
+  class APIPayload {
+    getValue(): Payload {
+      return 15 // 何でもいいけど文字列以外のものを返す
+    }
+  }
+
+  interface Payload {}
+  type ClassConstructor<T> = new(...args: any[]) => T
+  function serializable<
+    T extends ClassConstructor<{
+      getValue(): Payload
+    }>
+  >(Constructor: T) {
+    return class extends Constructor {
+      serialize() {
+        return this.getValue().toString()
+      }
+    }
+  }
+
+  let DecoratedAPIPayload = serializable(APIPayload)
+  let payload = new DecoratedAPIPayload
+  let payloadSerialize = payload.serialize()
+  // let serialized = payload.serialize() プロパティ 'serialize' は型 'APIPayload' に存在しません。ts(2339)
+
+  console.log(payloadSerialize)
+  console.log(typeof payloadSerialize)
 }
