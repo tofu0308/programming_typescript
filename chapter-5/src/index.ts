@@ -415,3 +415,25 @@ import { serialize } from "v8"
   console.log(payloadSerialize)
   console.log(typeof payloadSerialize)
 }
+
+// finalクラスをシミュレートする
+{
+ class MessageQueue {
+   private constructor(private messages: string[]) {}
+ } 
+
+// class BadQueue extends MessageQueue クラス 'MessageQueue' を拡張できません。Class コンストラクターがプライベートに設定されています。ts(2675)
+// new MessageQueue([]) クラス 'MessageQueue' のコンストラクターはプライベートであり、クラス宣言内でのみアクセス可能です。ts(2673)
+}
+{
+  class MessageQueue {
+    private constructor(private messages: string[]) {}
+    static create(messages: string[]) {
+      return new MessageQueue(messages)
+    }
+  } 
+
+  // class BadQueue extends MessageQueue クラス 'MessageQueue' を拡張できません。Class コンストラクターがプライベートに設定されています。ts(2675)
+  let messageQueue = MessageQueue.create([])
+  console.log(messageQueue)
+ }

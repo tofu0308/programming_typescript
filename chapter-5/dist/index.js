@@ -270,4 +270,27 @@ Object.defineProperty(exports, "__esModule", { value: true });
     console.log(payloadSerialize);
     console.log(typeof payloadSerialize);
 }
+// finalクラスをシミュレートする
+{
+    class MessageQueue {
+        constructor(messages) {
+            this.messages = messages;
+        }
+    }
+    // class BadQueue extends MessageQueue クラス 'MessageQueue' を拡張できません。Class コンストラクターがプライベートに設定されています。ts(2675)
+    // new MessageQueue([]) クラス 'MessageQueue' のコンストラクターはプライベートであり、クラス宣言内でのみアクセス可能です。ts(2673)
+}
+{
+    class MessageQueue {
+        constructor(messages) {
+            this.messages = messages;
+        }
+        static create(messages) {
+            return new MessageQueue(messages);
+        }
+    }
+    // class BadQueue extends MessageQueue クラス 'MessageQueue' を拡張できません。Class コンストラクターがプライベートに設定されています。ts(2675)
+    let messageQueue = MessageQueue.create([]);
+    console.log(messageQueue);
+}
 //# sourceMappingURL=index.js.map
