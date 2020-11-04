@@ -1,6 +1,7 @@
 import { isBoolean } from "util"
 import { Z_ASCII } from "zlib"
 import { serialize } from "v8"
+import { send } from "process"
 
 // クラスと継承
 {
@@ -470,4 +471,41 @@ import { serialize } from "v8"
    console.log(Shoe.create('balletFlat'))
    console.log(Shoe.create('boot'))
    console.log(Shoe.create('sneaker'))
+}
+// ビルダーパターン
+{
+  class RequestBuilder {
+    private data: object|null = null
+    private method: 'get' |'post'|null = null
+    private url: string|null = null
+
+    setURL(url:string): this {
+      this.url = url
+      return this
+    }
+    setMethod(method:'get'|'post'): this {
+      this.method = method
+      return this
+    }
+    setData(data: object): this {
+      this.data = data
+      return this
+    }
+    send() { 
+      return {
+        url: this
+      }
+
+    }  
+  }
+
+  let requestBuilder =
+  new RequestBuilder()
+    .setURL('/users')
+    .setMethod('get')
+    .setData({firstName: 'Anna'})
+    .send()
+
+    console.log(requestBuilder)
+
 }

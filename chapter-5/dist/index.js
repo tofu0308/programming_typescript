@@ -324,4 +324,37 @@ Object.defineProperty(exports, "__esModule", { value: true });
     console.log(Shoe.create('boot'));
     console.log(Shoe.create('sneaker'));
 }
+// ビルダーパターン
+{
+    class RequestBuilder {
+        constructor() {
+            this.data = null;
+            this.method = null;
+            this.url = null;
+        }
+        setURL(url) {
+            this.url = url;
+            return this;
+        }
+        setMethod(method) {
+            this.method = method;
+            return this;
+        }
+        setData(data) {
+            this.data = data;
+            return this;
+        }
+        send() {
+            return {
+                url: this
+            };
+        }
+    }
+    let requestBuilder = new RequestBuilder()
+        .setURL('/users')
+        .setMethod('get')
+        .setData({ firstName: 'Anna' })
+        .send();
+    console.log(requestBuilder);
+}
 //# sourceMappingURL=index.js.map
