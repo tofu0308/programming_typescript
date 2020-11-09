@@ -398,4 +398,49 @@ Object.defineProperty(exports, "__esModule", { value: true });
     console.log(Shoe.create('boot'));
     console.log(Shoe.create('sneaker'));
 }
+{
+    class RequestBuilder {
+        constructor() {
+            this.data = null;
+            this.method = null;
+            this.url = null;
+        }
+        setMethod(method) {
+            return new RequestBuilderWithMethod().setMethod(method).setData(this.data);
+        }
+        setData(data) {
+            this.data = data;
+            return this;
+        }
+    }
+    class RequestBuilderWithMethod extends RequestBuilder {
+        setMethod(method) {
+            this.method = method;
+            return this;
+        }
+        setURL(url) {
+            return new RequestBuilderWithMethodAndURL()
+                .setMethod(this.method)
+                .setURL(url)
+                .setData(this.data);
+        }
+    }
+    class RequestBuilderWithMethodAndURL extends RequestBuilderWithMethod {
+        setURL(url) {
+            this.url = url;
+            return this;
+        }
+        send() {
+            return {
+                url: this
+            };
+        }
+    }
+    let requestBuilder = new RequestBuilder()
+        .setMethod('get')
+        .setData({})
+        .setURL('foo.com')
+        .send();
+    console.log(requestBuilder);
+}
 //# sourceMappingURL=index.js.map
