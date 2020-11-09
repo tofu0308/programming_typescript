@@ -507,5 +507,18 @@ import { send } from "process"
     .send()
 
     console.log(requestBuilder)
+}
 
+// 練習問題
+{
+  
+  // 5.13.2
+  class A {
+    protected constructor() {}
+  }
+  
+  class B extends A {} 
+  // new A()  クラス 'A' のコンストラクターは保護されており、クラス宣言内でのみアクセス可能です。ts(2674)
+  // new B()  クラス 'A' のコンストラクターは保護されており、クラス宣言内でのみアクセス可能です。ts(2674)  
+  /* protectedコンストラクターを持つクラスは、privateコンストラクターを持つクラスと違って、拡張することができます。ただし、どちらのクラスも、newすることはできません。 */ 
 }
