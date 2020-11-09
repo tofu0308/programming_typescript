@@ -357,4 +357,45 @@ Object.defineProperty(exports, "__esModule", { value: true });
         .send();
     console.log(requestBuilder);
 }
+// 練習問題
+{
+    // 5.13.2
+    class A {
+        constructor() { }
+    }
+    class B extends A {
+    }
+    // new A()  クラス 'A' のコンストラクターは保護されており、クラス宣言内でのみアクセス可能です。ts(2674)
+    // new B()  クラス 'A' のコンストラクターは保護されており、クラス宣言内でのみアクセス可能です。ts(2674)  
+    /* protectedコンストラクターを持つクラスは、privateコンストラクターを持つクラスと違って、拡張することができます。ただし、どちらのクラスも、newすることはできません。 */
+}
+{
+    class BalletFlat {
+        constructor() {
+            this.purpose = 'dancing';
+        }
+    }
+    class Boot {
+        constructor() {
+            this.purpose = 'woodcutting';
+        }
+    }
+    class Sneaker {
+        constructor() {
+            this.purpose = 'walking';
+        }
+    }
+    let Shoe = {
+        create(type) {
+            switch (type) {
+                case 'balletFlat': return new BalletFlat();
+                case 'boot': return new Boot();
+                case 'sneaker': return new Sneaker();
+            }
+        }
+    };
+    console.log(Shoe.create('balletFlat'));
+    console.log(Shoe.create('boot'));
+    console.log(Shoe.create('sneaker'));
+}
 //# sourceMappingURL=index.js.map
