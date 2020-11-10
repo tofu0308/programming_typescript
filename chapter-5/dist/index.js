@@ -442,5 +442,25 @@ Object.defineProperty(exports, "__esModule", { value: true });
         .setURL('foo.com')
         .send();
     console.log(requestBuilder);
+    class RequestBuilder2 {
+        setData(data) {
+            return Object.assign(this, { data });
+        }
+        setMethod(method) {
+            return Object.assign(this, { method });
+        }
+        setURL(url) {
+            return Object.assign(this, { url });
+        }
+        build() {
+            return this;
+        }
+    }
+    let requestBuilder2 = new RequestBuilder2()
+        .setData({})
+        // .setMethod('post')
+        // .setURL('bar')
+        .build();
+    console.log(requestBuilder2);
 }
 //# sourceMappingURL=index.js.map
