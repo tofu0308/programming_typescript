@@ -80,4 +80,53 @@
           プロパティ 'caw' は型 'Bird' にありませんが、型 'Crow' では必須です。ts(2345)
     */
 }
+// 型の拡大
+{
+    // ベースの型へ拡大
+    let a = 'x'; // string
+    let b = 3; // number
+    let c = true; // boolean
+    let d = { x: 3 }; // {x: number}
+    let E;
+    (function (E) {
+        E[E["X"] = 0] = "X";
+        E[E["Y"] = 1] = "Y";
+        E[E["Z"] = 2] = "Z";
+    })(E || (E = {}));
+    let e = E.X; // E
+    console.log(a, b, c, d, e);
+    // イミュータブルな型
+    const aa = 'x'; // 'x'
+    const bb = 3; // 3
+    const cc = true; // true
+    const ee = E.X; // E.X
+    console.log(aa, bb, cc, ee);
+    // 明示的な型アノテーション
+    let aaa = 'x';
+    let bbb = 3;
+    var ccc = true;
+    const ddd = { x: 3 };
+}
+{
+    // 拡大されない方をletで再割り当て=>拡大される
+    const a = 'x'; // 'x'
+    let b = a; // string
+    // 型を狭く保つにはもとの宣言に明示的な型アノテーションを追加する
+    const c = 'x'; // 'x'
+    let d = c; // 'x'
+}
+{
+    // null,undefinedに初期化された変数はanyに拡大される
+    let a = null; // any
+    a = 3; // any
+    a = 'b'; // any
+    function x() {
+        let b = undefined; // any
+        b = 3; // any
+        b = 'b'; // any
+        return b;
+    }
+    // 宣言されたスコープを離れると明確な型を割り当てる
+    x(); // string
+}
 //# sourceMappingURL=index.js.map
