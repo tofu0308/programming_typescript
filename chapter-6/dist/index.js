@@ -129,8 +129,8 @@
     // 宣言されたスコープを離れると明確な型を割り当てる
     x(); // string
 }
+// constアサーション
 {
-    // constアサーション
     let a = { x: 3 }; // x: number
     let b; // x: 3
     let c = { x: 3 }; // readonly x: 3;
@@ -146,5 +146,37 @@
         readonly x: 2;
       }]
     */
+}
+// 過剰プロパティチェック
+{
+    class API {
+        constructor(options) {
+            this.options = options;
+        }
+    }
+    new API({
+        baseURL: 'https://google.com/',
+        tier: 'prod'
+    });
+    // スペルミスした場合
+    new API({
+        baseURL: 'https://google.com/',
+    });
+    new API({
+        baseURL: 'https://google.com/',
+    });
+    new API({
+        baseURL: 'https://google.com/',
+        tier: 'prod'
+    });
+    let badOptions = {
+        baseURL: 'https://google.com/',
+        badTier: 'prod'
+    };
+    new API(badOptions);
+    let options = {
+        baseURL: 'https://google.com/',
+    };
+    new API(options);
 }
 //# sourceMappingURL=index.js.map

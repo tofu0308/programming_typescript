@@ -161,8 +161,8 @@ type LegacyUser = {
 
 }
 
+// constアサーション
 {
-  // constアサーション
   let a = {x: 3} // x: number
   let b: {x: 3} // x: 3
   let c = {x: 3} as const // readonly x: 3;
@@ -180,4 +180,63 @@ type LegacyUser = {
       readonly x: 2;
     }]
   */
+}
+
+// 過剰プロパティチェック
+{
+  type Options = {
+    baseURL: string
+    cacheSize?: number
+    tier?: 'prod'|'dev'
+  }
+
+  class API {
+    constructor(private options: Options){}
+  }
+
+  new API({
+    baseURL: 'https://google.com/',
+    tier: 'prod'
+  })
+
+  // スペルミスした場合
+  new API({
+    baseURL: 'https://google.com/',
+    // tierr: 'prod'
+    /**
+      型 '{ baseURL: string; tierr: string; }' の引数を型 'Options' のパラメーターに割り当てることはできません。
+      オブジェクト リテラルで指定できるのは既知のプロパティのみですが、'tierr' は型 'Options' に存在しません。書こうとしたのは 'tier' ですか?ts(2345)
+     */
+  })
+
+  new API({
+    baseURL: 'https://google.com/',
+    // BadTier: 'prod'
+    /**
+      型 '{ baseURL: string; BadTier: string; }' の引数を型 'Options' のパラメーターに割り当てることはできません。
+      オブジェクト リテラルは既知のプロパティのみ指定できます。'BadTier' は型 'Options' に存在しません。ts(2345)
+    */
+  })
+
+  new API({
+    baseURL: 'https://google.com/',
+    tier: 'prod'
+  } as Options )
+
+  let badOptions = {
+    baseURL: 'https://google.com/',
+    badTier: 'prod'
+  }
+  new API(badOptions)
+
+  let options: Options = {
+    baseURL: 'https://google.com/',
+    // badTier: 'prod'
+    /**
+      型 '{ baseURL: string; badTier: string; }' を型 'Options' に割り当てることはできません。
+      オブジェクト リテラルは既知のプロパティのみ指定できます。'badTier' は型 'Options' に存在しません。ts(2322)
+     */
+  }
+  new API(options)
+
 }
