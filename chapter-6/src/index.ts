@@ -240,3 +240,49 @@ type LegacyUser = {
   new API(options)
 
 }
+
+// 型の絞り込み
+{
+  // 文字列リテラル型の合併型を使ってCSSの単位が取り得る値を表現
+  type Unit = 'cm'|'px'|'%'
+
+  // 単位を列挙
+  let units: Unit[] = ['cm', 'px', '%']
+
+  // 各単位をチェックし、一致するものがなければnullを返す
+  function parseUnit(value: string): Unit | null {
+    for(let i=0; i < units.length; i++) {
+      if(value.endsWith(units[i])) {
+        return units[i]
+      }
+    }
+    return null
+  }
+
+  type Width = {
+    unit: Unit,
+    value: number
+  }
+
+  function ParseWith(width: number| string | null): Width|null {
+    if(width == null) {
+      return null
+    }
+
+    if(typeof width === 'number') {
+      return {unit: 'px', value: width}
+    }
+
+    let unit = parseUnit(width)
+    if(unit) {
+      return {unit, value: parseFloat(width)}
+    }
+
+    return null
+  }
+
+  console.log(ParseWith(100))
+  console.log(ParseWith('100%'))
+  console.log(ParseWith('100cm'))
+  console.log(ParseWith(null))
+}

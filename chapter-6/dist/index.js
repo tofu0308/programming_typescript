@@ -179,4 +179,35 @@
     };
     new API(options);
 }
+// 型の絞り込み
+{
+    // 単位を列挙
+    let units = ['cm', 'px', '%'];
+    // 各単位をチェックし、一致するものがなければnullを返す
+    function parseUnit(value) {
+        for (let i = 0; i < units.length; i++) {
+            if (value.endsWith(units[i])) {
+                return units[i];
+            }
+        }
+        return null;
+    }
+    function ParseWith(width) {
+        if (width == null) {
+            return null;
+        }
+        if (typeof width === 'number') {
+            return { unit: 'px', value: width };
+        }
+        let unit = parseUnit(width);
+        if (unit) {
+            return { unit, value: parseFloat(width) };
+        }
+        return null;
+    }
+    console.log(ParseWith(100));
+    console.log(ParseWith('100%'));
+    console.log(ParseWith('100cm'));
+    console.log(ParseWith(null));
+}
 //# sourceMappingURL=index.js.map
