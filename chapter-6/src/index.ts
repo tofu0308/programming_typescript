@@ -286,3 +286,58 @@ type LegacyUser = {
   console.log(ParseWith('100cm'))
   console.log(ParseWith(null))
 }
+
+// タグ付き合併型
+{
+  type UserTextEvent = { value: string}
+  type UserMouseEvent = { value: [number, number]}
+
+  type UserEvent = UserTextEvent|UserMouseEvent
+
+  function handle(event: UserEvent) {
+    if(typeof event.value === 'string') {
+      event.value // string  
+      return event
+    }
+    event.value // [number, number]
+    return event
+  }
+
+  console.log(handle({value: 'a'}))
+}
+
+{
+  type UserTextEvent = { value: string, target: HTMLInputElement}
+  type UserMouseEvent = { value: [number, number], target: HTMLElement}
+
+  type UserEvent = UserTextEvent|UserMouseEvent
+
+  function handle(event: UserEvent) { 
+     if(typeof event.value === 'string') {
+       event.value
+       event.target // (property) target: HTMLInputElement | HTMLElement
+       //  UserTextEvent|UserMouseEventの引数の型を渡すことが出来るため。（合併型のメンバーは型が重複する場合がある）
+       return
+     }
+     event.value
+     event.target // (property) target: HTMLInputElement | HTMLElement
+     //  UserTextEvent|UserMouseEventの引数の型を渡すことが出来るため。（合併型のメンバーは型が重複する場合がある）
+   }
+}
+
+{
+  type UserTextEvent = { type: 'TextEvent', value: string, target: HTMLInputElement}
+  type UserMouseEvent = { type: 'MouseEvent', value: [number, number], target: HTMLElement}
+
+  type UserEvent = UserTextEvent|UserMouseEvent
+
+  function handle(event: UserEvent) { 
+    if(event.type === 'TextEvent') {
+      event.value
+      event.target //(property) target: HTMLInputElement
+      return
+    }
+    event.value
+    event.target  // (property) target: HTMLElement
+  }
+}

@@ -210,4 +210,40 @@
     console.log(ParseWith('100cm'));
     console.log(ParseWith(null));
 }
+// タグ付き合併型
+{
+    function handle(event) {
+        if (typeof event.value === 'string') {
+            event.value; // string  
+            return event;
+        }
+        event.value; // [number, number]
+        return event;
+    }
+    console.log(handle({ value: 'a' }));
+}
+{
+    function handle(event) {
+        if (typeof event.value === 'string') {
+            event.value;
+            event.target; // (property) target: HTMLInputElement | HTMLElement
+            //  UserTextEvent|UserMouseEventの引数の型を渡すことが出来るため。（合併型のメンバーは型が重複する場合がある）
+            return;
+        }
+        event.value;
+        event.target; // (property) target: HTMLInputElement | HTMLElement
+        //  UserTextEvent|UserMouseEventの引数の型を渡すことが出来るため。（合併型のメンバーは型が重複する場合がある）
+    }
+}
+{
+    function handle(event) {
+        if (event.type === 'TextEvent') {
+            event.value;
+            event.target; //(property) target: HTMLInputElement
+            return;
+        }
+        event.value;
+        event.target; // (property) target: HTMLElement
+    }
+}
 //# sourceMappingURL=index.js.map
