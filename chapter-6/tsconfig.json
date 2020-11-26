@@ -6,7 +6,8 @@
     "sourceMap": true,
     "strict": true,
     "target": "es2020",
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "noImplicitReturns": true,
   },
   "include": [
     "src"

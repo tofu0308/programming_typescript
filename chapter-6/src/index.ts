@@ -341,3 +341,27 @@ type LegacyUser = {
     event.target  // (property) target: HTMLElement
   }
 }
+
+// 完全性
+{
+  type Weekday = 'Mon'|'Tue'|'Wed'|'Thu'|'Fri'
+  type Day = Weekday  |'Sat'|'Sun'
+
+  /*
+  function getNextDay(w: Weekday): Day { //関数に終了の return ステートメントがないため、戻り値の型には 'undefined' が含まれません。ts(2366)
+    switch(w) {
+      case 'Mon': return "Tue"
+    }
+  }
+  */
+
+  /*
+  function isBig(n: number) { // 一部のコード パスは値を返しません。ts(7030)
+  // tsconfigで"noImplicitReturns": trueを設定する必要がある
+    if(n >= 100) {
+      return true
+    }
+  }
+  */
+
+}
