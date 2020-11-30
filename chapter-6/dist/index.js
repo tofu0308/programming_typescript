@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 {
     function deleteUser(user) {
         delete user.id;
@@ -263,5 +264,14 @@
       }
     }
     */
+}
+// 高度なオブジェクト型
+// オブジェクト型についての型演算子
+// ルックアップ型
+{
+    // function getAPIResponse():Promise<APIResponse> {}  // 宣言された型が 'void' でも 'any' でもない関数は値を返す必要があります。ts(2355)
+    function getAPIResponse() { } // 宣言された型が 'void' でも 'any' でもない関数は値を返す必要があります。ts(2355)
+    function renderFriendList(friendList) { }
+    let response = /*await*/ getAPIResponse(); //トップレベルの 'await' 式は、'module' オプションが 'esnext' または 'system' に設定されていて、'target' オプションが 'es2017' 以上に設定されている場合にのみ使用できます。ts(1378)
 }
 //# sourceMappingURL=index.js.map

@@ -1,3 +1,5 @@
+import { userInfo } from "os"
+
 {
   type ExistingUser = {
     id: number
@@ -363,5 +365,32 @@ type LegacyUser = {
     }
   }
   */
+}
 
+// 高度なオブジェクト型
+// オブジェクト型についての型演算子
+// ルックアップ型
+{
+  type APIResponse = {
+    user: {
+      userId: string
+      friendList: {
+        count: number
+        friends: {
+          firstName: string
+          lastName: string
+        }[]
+      }
+    }
+  }
+
+  // キーを指定して型を取得（ルックアップ）する
+  type FriendList = APIResponse['user']['friendList']
+  type Friend = FriendList['friends'][number]
+
+  // function getAPIResponse():Promise<APIResponse> {}  // 宣言された型が 'void' でも 'any' でもない関数は値を返す必要があります。ts(2355)
+  function getAPIResponse():void {}  // 宣言された型が 'void' でも 'any' でもない関数は値を返す必要があります。ts(2355)
+  function renderFriendList(friendList: FriendList) {}
+
+  let response = /*await*/ getAPIResponse() //トップレベルの 'await' 式は、'module' オプションが 'esnext' または 'system' に設定されていて、'target' オプションが 'es2017' 以上に設定されている場合にのみ使用できます。ts(1378)
 }
