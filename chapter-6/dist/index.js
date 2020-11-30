@@ -274,4 +274,27 @@ Object.defineProperty(exports, "__esModule", { value: true });
     function renderFriendList(friendList) { }
     let response = /*await*/ getAPIResponse(); //トップレベルの 'await' 式は、'module' オプションが 'esnext' または 'system' に設定されていて、'target' オプションが 'es2017' 以上に設定されている場合にのみ使用できます。ts(1378)
 }
+{
+    function get(o, k) {
+        return o[k];
+    }
+    let activityLog = {
+        lastEvent: new Date,
+        events: [
+            { id: '1', timestamp: new Date, type: 'Read' },
+            { id: '2', timestamp: new Date, type: 'Write' }
+        ]
+    };
+    let LastEvent = get(activityLog, 'lastEvent'); // let LastEvent: Date
+    let get2 = (object, ...keys) => {
+        let result = object;
+        keys.forEach(k => result = result[k]);
+        return result;
+    };
+    const get2log = get2(activityLog, 'events', 0, 'type');
+    // let get2: <ActivityLog, "events", 0, "type">(o: ActivityLog, k1: "events", K2: 0, k3: "type") => "Read" | "Write" (+2 overloads)
+    console.log(get2log);
+    // get2(activityLog, 'bad')
+    // 型 '"bad"' の引数を型 '"lastEvent" | "events"' のパラメーターに割り当てることはできません。ts(2345)
+}
 //# sourceMappingURL=index.js.map
