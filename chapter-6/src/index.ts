@@ -459,3 +459,26 @@ type LegacyUser = {
   // 型 '"bad"' の引数を型 '"lastEvent" | "events"' のパラメーターに割り当てることはできません。ts(2345)
 
 }
+
+// レコード型
+{
+  type Weekday = 'Mon'|'Tue'|'Wed'|'Thu'|'Fri'
+  type Day = Weekday  |'Sat'|'Sun'
+
+  /*
+  let nextDay: Record<Weekday, Day> = {
+    Mon: 'Tue'
+  }
+   */
+  // 型 '{ Mon: "Tue"; }' には 型 'Record<Weekday, Day>' からの次のプロパティがありません: Tue, Wed, Thu, Frits(2739)
+
+  
+  let nextDay: Record<Weekday, Day> = {
+    Mon: 'Tue',
+    Tue: 'Wed',
+    Wed: 'Thu',
+    Thu: 'Fri',
+    Fri: 'Sat',
+  }
+  console.log(nextDay)
+}

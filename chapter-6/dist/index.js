@@ -297,4 +297,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
     // get2(activityLog, 'bad')
     // 型 '"bad"' の引数を型 '"lastEvent" | "events"' のパラメーターに割り当てることはできません。ts(2345)
 }
+// レコード型
+{
+    /*
+    let nextDay: Record<Weekday, Day> = {
+      Mon: 'Tue'
+    }
+     */
+    // 型 '{ Mon: "Tue"; }' には 型 'Record<Weekday, Day>' からの次のプロパティがありません: Tue, Wed, Thu, Frits(2739)
+    let nextDay = {
+        Mon: 'Tue',
+        Tue: 'Wed',
+        Wed: 'Thu',
+        Thu: 'Fri',
+        Fri: 'Sat',
+    };
+    console.log(nextDay);
+}
 //# sourceMappingURL=index.js.map
