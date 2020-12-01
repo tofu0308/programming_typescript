@@ -297,8 +297,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
     // get2(activityLog, 'bad')
     // 型 '"bad"' の引数を型 '"lastEvent" | "events"' のパラメーターに割り当てることはできません。ts(2345)
 }
-// レコード型
 {
+    // レコード型
     /*
     let nextDay: Record<Weekday, Day> = {
       Mon: 'Tue'
@@ -313,5 +313,32 @@ Object.defineProperty(exports, "__esModule", { value: true });
         Fri: 'Sat',
     };
     console.log(nextDay);
+    let optionalAccount = {};
+    let nullableAccout = {
+        id: null,
+        isEmployee: null,
+        notes: null
+    };
+    let readonlyAccount = {
+        id: 1,
+        isEmployee: true,
+        notes: ['ReadonlyAccount', 'b']
+    };
+    let account2 = {
+        id: 1,
+        isEmployee: true,
+        notes: ['Account2', 'b']
+    };
+    account2 = { ...account2, notes: ['rewrite 2ccount2'] };
+    let account3 = {
+        id: 1,
+        isEmployee: true,
+        notes: ['Account3', 'b']
+    };
+    console.log(optionalAccount);
+    console.log(nullableAccout);
+    console.log(readonlyAccount);
+    console.log(account2);
+    console.log(account3);
 }
 //# sourceMappingURL=index.js.map

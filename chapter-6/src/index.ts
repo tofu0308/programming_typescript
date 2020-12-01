@@ -460,11 +460,11 @@ type LegacyUser = {
 
 }
 
-// レコード型
 {
   type Weekday = 'Mon'|'Tue'|'Wed'|'Thu'|'Fri'
   type Day = Weekday  |'Sat'|'Sun'
 
+  // レコード型
   /*
   let nextDay: Record<Weekday, Day> = {
     Mon: 'Tue'
@@ -481,4 +481,76 @@ type LegacyUser = {
     Fri: 'Sat',
   }
   console.log(nextDay)
+
+  // マップ型
+  /*
+  let nextDayMap: {[K in Weekday]: Day} = {
+    Mon: 'Tue'
+  }
+  */
+  // 型 '{ Mon: "Tue"; }' には 型 '{ Mon: Day; Tue: Day; Wed: Day; Thu: Day; Fri: Day; }' からの次のプロパティがありません: Tue, Wed, Thu, Frits(2739)
+
+  type Record<K extends keyof any, T> = {
+    [P in K] :T
+  }
+
+  type Account = {
+    id: number
+    isEmployee: boolean
+    notes: string[]
+  }
+
+  // すべてのフィールドを省略可能にする
+  type OptionalAccount = {
+    [K in keyof Account]?: Account[K]
+  }
+  let optionalAccount:OptionalAccount = {}
+
+  // すべてのフィールドをnull許容する
+  type NullableAccout = {
+    [K in keyof Account]: Account[K]|null
+  }
+  let nullableAccout:NullableAccout = {
+    id: null,
+    isEmployee: null,
+    notes: null
+  }
+
+  // すべてのフィールドを読み取り専用にする
+  type ReadonlyAccount = {
+    readonly [K in keyof Account]: Account[K]
+  }
+  let readonlyAccount:ReadonlyAccount = {
+    id: 1,
+    isEmployee: true,
+    notes: ['ReadonlyAccount', 'b']
+  }
+
+  // すべてのフィールドを再び書き込み可能にする（Accountと同等）
+  type Account2 = {
+    -readonly [K in keyof Account]: Account[K]
+  }
+  let account2: Account2 = {
+    id: 1,
+    isEmployee: true,
+    notes: ['Account2', 'b']
+  }
+  account2 = {...account2, notes:['rewrite 2ccount2']}
+
+  // すべてのフィールドを再び必須にする（Accountと同等）
+  type Account3 = {
+    [K in keyof OptionalAccount]-?: Account[K]
+  }
+  let account3: Account3 = {
+    id: 1,
+    isEmployee: true,
+    notes: ['Account3', 'b']
+
+  }
+
+  console.log(optionalAccount)
+  console.log(nullableAccout)
+  console.log(readonlyAccount)
+  console.log(account2)
+  console.log(account3)
 }
