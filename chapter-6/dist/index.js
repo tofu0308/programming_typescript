@@ -341,4 +341,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
     console.log(account2);
     console.log(account3);
 }
+// コンパニオンオブジェクトパターン
+{
+    let Currency = {
+        from(value, unit) {
+            return {
+                unit: unit,
+                value
+            };
+        }
+    };
+    // import {Currency} from './Currency'
+    // インポート宣言は名前空間またはモジュールでのみ使用可能です。ts(1232)
+    let amountDue = {
+        unit: 'JPY',
+        value: 100.2
+    };
+    let otherAmoutDue = Currency.from(330, "EUR");
+    console.log(amountDue);
+    console.log(otherAmoutDue);
+}
 //# sourceMappingURL=index.js.map

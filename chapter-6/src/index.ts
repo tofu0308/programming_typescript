@@ -554,3 +554,34 @@ type LegacyUser = {
   console.log(account2)
   console.log(account3)
 }
+
+// コンパニオンオブジェクトパターン
+{
+  // 同じスコープ内で、型と値の両方に結び付けられた同じ名前を持つ事ができる
+  type Unit = 'EUR'|'GBP'|'JPY'|'USD'
+  type Currency = {
+    unit: Unit
+    value: number
+  }
+
+  let Currency = {
+    from(value: number, unit: Unit) {
+      return {
+        unit: unit,
+        value
+      }
+    }
+  }
+
+  // import {Currency} from './Currency'
+  // インポート宣言は名前空間またはモジュールでのみ使用可能です。ts(1232)
+
+  let amountDue: Currency = {
+    unit: 'JPY',
+    value: 100.2
+  }
+  let otherAmoutDue = Currency.from(330, "EUR")
+
+  console.log(amountDue)
+  console.log(otherAmoutDue)
+}
