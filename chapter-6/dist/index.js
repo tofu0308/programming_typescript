@@ -361,4 +361,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
     console.log(amountDue);
     console.log(otherAmoutDue);
 }
+// 関数にまつわる高度な型
+// タプルについての型推論の改善
+{
+    let a = [1, true]; //let a: (number | boolean)[] 
+    function tuple(...ts // (tye parameter) T in tuple<T extends unknown[]>(...ts: T): T
+    ) {
+        return ts;
+    }
+    let b = tuple(1, true); // let b: [number, boolean]
+    let c = tuple(2, false, 'aaa'); // let c: [number, boolean, string]
+    console.log(a);
+    console.log(b);
+    console.log(c);
+}
 //# sourceMappingURL=index.js.map
