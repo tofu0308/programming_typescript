@@ -375,4 +375,26 @@ Object.defineProperty(exports, "__esModule", { value: true });
     console.log(b);
     console.log(c);
 }
+// ユーザー定義型ガード
+{
+    function isString(a) {
+        console.log(typeof a === 'string');
+        return typeof a === 'string';
+    }
+    isString('a');
+    isString(['7']);
+    function parseInput(input) {
+        let formattedInput;
+        if (isString(input)) {
+            formattedInput = input.toUpperCase(); // (method) String.toUpperCase(): string
+        }
+    }
+    parseInput('b');
+    parseInput(6);
+    function isLegacyDialog(dialog) {
+        return dialog;
+    }
+    console.log(isLegacyDialog(true));
+    console.log(isLegacyDialog(false));
+}
 //# sourceMappingURL=index.js.map

@@ -608,3 +608,35 @@ type LegacyUser = {
    console.log(c)
 }
 
+// ユーザー定義型ガード
+{
+  function isString(a: unknown): a is string {
+    console.log(typeof a === 'string')
+    return typeof a === 'string'
+  }
+
+  isString('a')
+  isString(['7'])
+
+  function parseInput(input: string|number) {
+    let formattedInput: string
+    if(isString(input)) {
+      formattedInput = input.toUpperCase()  // (method) String.toUpperCase(): string
+    }
+  }
+
+  parseInput('b')
+  parseInput(6)
+
+  type LegacyDialog = boolean
+  type Dialog = boolean
+
+  function isLegacyDialog(
+    dialog: LegacyDialog|Dialog
+  ): dialog is LegacyDialog {
+    return dialog
+  }
+  console.log(isLegacyDialog(true))
+  console.log(isLegacyDialog(false))
+
+}
