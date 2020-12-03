@@ -397,4 +397,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
     console.log(isLegacyDialog(true));
     console.log(isLegacyDialog(false));
 }
+// 条件型
+{
+}
 //# sourceMappingURL=index.js.map

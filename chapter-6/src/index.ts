@@ -638,5 +638,12 @@ type LegacyUser = {
   }
   console.log(isLegacyDialog(true))
   console.log(isLegacyDialog(false))
-
 }
+
+// 条件型
+{
+  type IsString<T> = T extends string ? true : false
+  type A = IsString<string> // type A = true
+  type B = IsString<number> // type B = false
+}
+
