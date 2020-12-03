@@ -400,4 +400,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // 条件型
 {
 }
+// 分配条件型
+{
+    let a = [1, 2, 3];
+    let b = [1, '2', 3];
+    let a2 = [1, 2, 3];
+}
 //# sourceMappingURL=index.js.map

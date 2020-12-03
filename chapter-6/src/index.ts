@@ -647,3 +647,53 @@ type LegacyUser = {
   type B = IsString<number> // type B = false
 }
 
+// 分配条件型
+{
+  type ToArray<T> = T[]
+  type A = ToArray<number> // type A = number[]
+  type B = ToArray<number | string> // type B = (string | number)[]
+
+  type ToArray2<T> = T extends unknown ? T[]: T[]
+  type A2 = ToArray2<number> // type A2 = number[]
+  type B2 = ToArray2<number | string> // type B2 = string[] | number[]
+
+  let a:A = [1,2,3]
+  let b:B = [1,'2',3]
+  let a2:A2 = [1,2,3]
+
+  //  let b2: B2 =  [1,'2',3]
+  /*
+    型 '(string | number)[]' を型 'number[] | string[]' に割り当てることはできません。
+      型 '(string | number)[]' を型 'number[]' に割り当てることはできません。
+        型 'string | number' を型 'number' に割り当てることはできません。
+          型 'string' を型 'number' に割り当てることはできません。ts(2322)
+  */
+
+  type Without<T, U> = T extends U ? never: T
+
+  type WithoutA = Without< 
+    boolean|number|string,
+    boolean
+  >
+  // type WithoutA = string | number
+
+  // WithoutAの計算の流れ
+  // 入力
+  type WithoutA1 = Without<boolean|string|number, boolean>
+
+  // 条件を合併型全体に分配
+  type WithoutA2 =　Without<boolean, boolean>
+                  | Without<number, boolean>
+                  | Without<string, boolean>
+  
+  // Withoutの定義に置き換え、TとUを適用
+  type WithoutA3 = (boolean extends boolean ? never: boolean)
+                  |(number extends boolean ? never: number)
+                  |(string extends boolean ? never: string)
+  
+  // それぞれの条件を評価
+  type WithoutA4 = never|number|string 
+
+  // 単純化
+  type WithoutA5 = number|string
+}
