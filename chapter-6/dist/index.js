@@ -411,4 +411,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 }
 {
 }
+// 組み込みの型条件
+{
+}
+{
+}
+{
+}
+{
+}
+{
+    /**
+      type I = {
+        b: number;
+      }
+     */
+}
 //# sourceMappingURL=index.js.map

@@ -703,6 +703,7 @@ type LegacyUser = {
   type ElementType<T> = T extends unknown[] ? T[number]: T
   type A = ElementType<number[]> // type A = number
 
+  // infer ジェネリック型をインラインで設定するための構文
   type ElementType2<T> = T extends (infer U)[] ? U : T
   type B = ElementType2<number[]> // type B = number
 }
@@ -711,6 +712,51 @@ type LegacyUser = {
   // Array.sliceの型を取得
   type F = typeof Array['prototype']['slice']
   type A = SecondArg<F>  // type A = number | undefined
+}
 
+// 組み込みの型条件
+{
+  // Exclude<T, U>
+  // Tに含まれているがUには含まれていない型を計算する
+  type A = number|string
+  type B = string
+  type C = Exclude<A, B> // type C = number
   
+  type D = number|string
+  type E = Exclude<A, D> // type E = never
+}
+{
+  // Extract<T, U>
+  // Tに含まれる型のうち、Uに割り当てることが出来るものを計算する
+  type A = number|string
+  type B = string
+  type C = Extract<A, B> //type C = string
+}
+{
+  // NonNullable<T>
+  // null,undefindを除外したTのバージョンを計算する
+
+  type A = {a?: number|null}
+  type B = NonNullable<A['a']> // type B = number
+}
+{
+  // ReturnType<F>
+  // 関数の戻り地の型を計算
+  // ※ジェネリックやオーバーロードされた関数については期待通りに機能しない
+
+  type F = (a: number) => string
+  type R = ReturnType<F> // type R = string
+}
+{
+  // InstanceType<C>
+  // クラスコンストラクターのインスタンス型を計算します
+
+  type A = {new():B}
+  type B = {b: number}
+  type I = InstanceType<A>
+  /**
+    type I = {
+      b: number;
+    }
+   */
 }
