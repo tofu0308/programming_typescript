@@ -406,4 +406,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
     let b = [1, '2', 3];
     let a2 = [1, 2, 3];
 }
+// inferキーワード
+{
+}
+{
+}
 //# sourceMappingURL=index.js.map
