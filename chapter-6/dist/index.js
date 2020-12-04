@@ -441,4 +441,28 @@ Object.defineProperty(exports, "__esModule", { value: true });
     // ↓も通過してしまうので、as anyの使用は　極力控える
     addToList(2, 'b');
 }
+// 非nullアサーション
+{
+    function closeDialog(dialog) {
+        if (!dialog.id)
+            return;
+        setTimeout(() => removeFromDOM(dialog, document.getElementById(dialog.id)));
+    }
+    function removeFromDOM(dialog, element) {
+        element.parentNode.removeChild(element);
+        delete dialog.id;
+    }
+}
+// ↑をリファクタリング（非nullアサーションの使用を減らす）
+{
+    function closeDialog(dialog) {
+        if (!('id' in dialog))
+            return;
+        setTimeout(() => removeFromDOM(dialog, document.getElementById(dialog.id)));
+    }
+    function removeFromDOM(dialog, element) {
+        element.parentNode.removeChild(element);
+        delete dialog.id;
+    }
+}
 //# sourceMappingURL=index.js.map
