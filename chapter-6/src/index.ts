@@ -760,3 +760,22 @@ type LegacyUser = {
     }
    */
 }
+
+ // エスケープパッチ
+ // 型アサーション
+ {
+   function formatInput(input: string) {}
+   function getUserInput(): string|number {return 'hoge'}
+
+   let input = getUserInput()
+
+   formatInput(input as string) // inputがstringであることを主張
+   formatInput(<string>input) // ↑と同等
+
+   function addToList(list: string[], item: string){}
+   
+   addToList(['1','2'], 'a')
+   // addToList(2, 'b') // 型 '2' の引数を型 'string[]' のパラメーターに割り当てることはできません。ts(2345)
+   // ↓も通過してしまうので、as anyの使用は　極力控える
+   addToList(2 as any, 'b')
+ }

@@ -427,4 +427,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
       }
      */
 }
+// エスケープパッチ
+// 型アサーション
+{
+    function formatInput(input) { }
+    function getUserInput() { return 'hoge'; }
+    let input = getUserInput();
+    formatInput(input); // inputがstringであることを主張
+    formatInput(input); // ↑と同等
+    function addToList(list, item) { }
+    addToList(['1', '2'], 'a');
+    // addToList(2, 'b') // 型 '2' の引数を型 'string[]' のパラメーターに割り当てることはできません。ts(2345)
+    // ↓も通過してしまうので、as anyの使用は　極力控える
+    addToList(2, 'b');
+}
 //# sourceMappingURL=index.js.map
