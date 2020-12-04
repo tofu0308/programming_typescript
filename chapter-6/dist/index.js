@@ -465,4 +465,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
         delete dialog.id;
     }
 }
+// 明確な割当アサーション
+{
+    let userId;
+    fetchUser();
+    userId.toUpperCase();
+    function fetchUser() {
+        userId = 'userID';
+    }
+}
 //# sourceMappingURL=index.js.map

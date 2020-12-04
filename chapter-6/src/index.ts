@@ -818,3 +818,15 @@ type LegacyUser = {
     delete dialog.id
   }
 }
+
+// 明確な割当アサーション
+{
+  let userId!: string
+  fetchUser()
+
+  userId.toUpperCase()
+
+  function fetchUser(){
+    userId = 'userID'
+  }
+}
