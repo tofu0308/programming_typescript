@@ -866,3 +866,16 @@ type LegacyUser = {
           型 'typeof brand' は型 'typeof brand' に割り当てられません。同じ名前で 2 つの異なる型が存在しますが、これは関連していません。ts(2345)
    */
 }
+
+// プロトタイプを安全に拡張する
+/*
+{
+  interface Array<T> {
+    zip<U>(list:U[]):[T,U][]
+  }
+
+  Array.prototype.zip = function(list) {
+    return this.map((v, k) => [v, list[k]])
+  }
+}
+*/
