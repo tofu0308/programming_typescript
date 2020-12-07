@@ -474,4 +474,28 @@ Object.defineProperty(exports, "__esModule", { value: true });
         userId = 'userID';
     }
 }
+// 名前的型をシュミレートする
+{
+    function CompanyID(id) {
+        return id;
+    }
+    function OrderID(id) {
+        return id;
+    }
+    function UserID(id) {
+        return id;
+    }
+    function queryForUser(id) { }
+    let companyId = CompanyID('c123a');
+    let orderId = OrderID('o234b');
+    let userId = UserID('u345c');
+    queryForUser(userId);
+    // queryForUser(companyId)
+    /**
+      型 'CompanyID' の引数を型 'UserID' のパラメーターに割り当てることはできません。
+        型 'CompanyID' を型 '{ readonly brand: unique symbol; }' に割り当てることはできません。
+          プロパティ 'brand' の型に互換性がありません。
+            型 'typeof brand' は型 'typeof brand' に割り当てられません。同じ名前で 2 つの異なる型が存在しますが、これは関連していません。ts(2345)
+     */
+}
 //# sourceMappingURL=index.js.map

@@ -830,3 +830,39 @@ type LegacyUser = {
     userId = 'userID'
   }
 }
+
+// 名前的型をシュミレートする
+{
+  // 型のブランド化
+  type CompanyID = string & {readonly brand: unique symbol}
+  type OrderID = string & {readonly brand: unique symbol}
+  type UserID = string & {readonly brand: unique symbol}
+  type ID = CompanyID|OrderID|UserID
+
+  function CompanyID(id: string) {
+    return id as CompanyID
+  }
+
+  function OrderID(id: string) {
+    return id as OrderID
+  }
+
+  function UserID(id: string) {
+    return id as UserID
+  }
+
+  function queryForUser(id: UserID) {}
+
+  let companyId = CompanyID('c123a')
+  let orderId = OrderID('o234b')
+  let userId = UserID('u345c')
+
+  queryForUser(userId)
+  // queryForUser(companyId)
+  /**
+    型 'CompanyID' の引数を型 'UserID' のパラメーターに割り当てることはできません。
+      型 'CompanyID' を型 '{ readonly brand: unique symbol; }' に割り当てることはできません。
+        プロパティ 'brand' の型に互換性がありません。
+          型 'typeof brand' は型 'typeof brand' に割り当てられません。同じ名前で 2 つの異なる型が存在しますが、これは関連していません。ts(2345)
+   */
+}
