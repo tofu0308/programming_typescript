@@ -498,4 +498,110 @@ Object.defineProperty(exports, "__esModule", { value: true });
             型 'typeof brand' は型 'typeof brand' に割り当てられません。同じ名前で 2 つの異なる型が存在しますが、これは関連していません。ts(2345)
      */
 }
+// プロトタイプを安全に拡張する
+/*
+{
+  interface Array<T> {
+    zip<U>(list:U[]):[T,U][]
+  }
+
+  Array.prototype.zip = function(list) {
+    return this.map((v, k) => [v, list[k]])
+  }
+}
+*/
+// 練習問題1
+{
+    // リテラル型の1はnumberのサブタイプでありnumberに割当可
+    let a;
+    a = 1;
+    // numberはリテラル型1のスーパータイプなので割当不可
+    let b;
+    // b = 2 as number 
+    // 型 'number' を型 '1' に割り当てることはできません。ts(2322)
+    // stringはnumber|stringのサブタイプ
+    let c;
+    c = 'foo';
+    c = 3;
+    // c = 2 as string
+    // 型 'number' から型 'string' への変換は、互いに十分に重複できないため間違っている可能性があります。意図的にそうする場合は、まず式を 'unknown' に変換してください。ts(2352)
+    // boolean型とnumber型は関係がないため割当不可
+    let d;
+    // d = true as boolean
+    // 型 'boolean' を型 'number' に割り当てることはできません。ts(2322)
+    /* 割り当て可能。配列はそのメンバーに関して共変なので、配列が別の配列に割り当て可能であるためには、「そのメンバー <: 別の配列のメンバー」でなければなりません。numberはnumber | stringのサブタイプなので、number[]を(number | string)[]に割り当てることができます。 */
+    let e;
+    e = [1];
+    e = ['2'];
+    // 割り当て可能ではありません。配列はそのメンバーに関して共変なので、配列が別の配列に割り当て可能であるためには、「そのメンバー <: 別の配列のメンバー」でなければなりません。number | stringはnumberのサブタイプではなく、スーパータイプなので、(number | string)[]をnumber[]に割り当てることはできません。
+    let f;
+    // f = [1] as (number|string)[]
+    /*
+      型 '(string | number)[]' を型 'number[]' に割り当てることはできません。
+        型 'string | number' を型 'number' に割り当てることはできません。
+          型 'string' を型 'number' に割り当てることはできません。ts(2322)
+    */
+    // /* 割り当て可能です。オブジェクトはそのメンバーに関して共変なので、オブジェクトが別のオブジェクトに割り当て可能であるためには、「そのそれぞれのメンバー <: 別のオブジェクトのメンバー」でなければなりません。このオブジェクトはaという1つのメンバーだけを持ち、その型はリテラル型のtrueです。「true <: boolean」なので、{a: true} というオブジェクト全体を {a: boolean} に割り当てることができます。 */
+    let g;
+    g = { a: true };
+    g = { a: true };
+    g = { a: false };
+    // 割り当て可能です。（e）から（g）のルールを組み合わせると、ネストされたオブジェクトが別のオブジェクトに割り当て可能であるためには、「そのそれぞれのメンバー <: 別のオブジェクトのメンバー」でなければなりません。これを再帰的に繰り返します。
+    /*
+    {a: {b: [string]}} は {a: {b: [number | string]}} に割り当て可能か？
+      以下が真であれば、割り当て可能です：
+        {b: [string]} は {b: [number | string]} に割り当て可能か？
+        以下が真であれば、割り当て可能です：
+          [string] は [number | string] に割り当て可能か？
+          以下が真であれば、割り当て可能です：
+            string は number | string に割り当て可能か？
+            string は number | string という合併型に含まれているので、割り当て可能です。
+     */
+    let h;
+    h = { a: { b: ['c'] } };
+    // 割り当て可能です。関数が別の関数に割り当て可能であるためには、「そのそれぞれのパラメーター >: 別の関数のパラメーター」および「その戻り値の型 <: 別の関数の戻り値の型」でなければなりません。「number >: number」であり、「string <: string」なので、この関数型は割り当て可能です。
+    let i;
+    i = ((b) => 'c');
+    // 割り当て可能ではありません。関数が別の関数に割り当て可能であるためには、「そのそれぞれのパラメーター >: 別の関数のパラメーター」および「その戻り値の型 <: 別の関数の戻り値の型」でなければなりません。numberはstringとは関係がないので、「number >: string」ではなく、この関数型は割り当て可能ではありません。
+    let j;
+    // j = ((a: number) => 'b') as (a: number) => string
+    /*
+    型 '(a: number) => string' を型 '(a: string) => string' に割り当てることはできません。
+      パラメーター 'a' および 'a' は型に互換性がありません。
+        型 'string' を型 'number' に割り当てることはできません。ts(2322)
+    */
+    // 割り当て可能です。関数が別の関数に割り当て可能であるためには、「そのそれぞれのパラメーター >: 別の関数のパラメーター」および「その戻り値の型 <: 別の関数の戻り値の型」でなければなりません。number | stringはstringのスーパータイプであり、「string <: string」なので、この関数型は割り当て可能です。
+    let k;
+    k = ((a) => 'b');
+    let E;
+    (function (E) {
+        E["X"] = "X";
+    })(E || (E = {}));
+    let F;
+    (function (F) {
+        F["X"] = "X";
+    })(F || (F = {}));
+    /* 割り当て可能ではありません。列挙型のメンバーが別の列挙型のメンバーに割り当て可能であるためには、同じ列挙型に由来するものでなければなりません。どちらのメンバーもXという名前であり、同じ文字列値'X'を持っていますが、それらは異なる列挙型について定義されているので、それらを互いに割り当てることはできません。 */
+    let l;
+    /*
+     type Q2 = {
+         b: {
+             c: string;
+         };
+       }
+    */
+    let q2 = { b: { c: 'string' } };
+    console.log(q2);
+    // 練習問題4
+    let globalCache = {
+        get(key) {
+            return 'user';
+        }
+    };
+    let userId = fetchUser();
+    userId.toUpperCase();
+    function fetchUser() {
+        return globalCache.get('userId');
+    }
+}
 //# sourceMappingURL=index.js.map
