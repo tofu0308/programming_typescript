@@ -168,4 +168,41 @@
         .getOrElse(7);
     console.log(result);
 }
+class Some {
+    constructor(value) {
+        this.value = value;
+    }
+    flatMap(f) {
+        return f(this.value);
+    }
+    getOrElse() {
+        return this.value;
+    }
+}
+class None {
+    flatMap() {
+        return this;
+    }
+    getOrElse(value) {
+        return value;
+    }
+}
+function listOfOptionToOptionOfList(list) {
+    let empty = {};
+    let result = list.map(_ => _.getOrElse(empty)).filter(_ => _ !== empty);
+    if (result.length) {
+        return new Some(result);
+    }
+    return new None;
+}
+//  ビルドエラー起こすので
+/*
+let api = new API()
+let friendsUserNames = api
+  .getLoggerInUserID()
+  .flatMap(api.getFriendIDs)
+  .flatMap(_ => listOfOptionToOptionOfList(_.map(api.getUserName)))
+console.log(api)
+console.log(friendsUserNames)
+ */ 
 //# sourceMappingURL=index.js.map
