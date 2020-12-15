@@ -40,5 +40,47 @@ import * as fs from 'fs'
       }
     }
   )
+}
 
+// プロミスを使って健全さを取り戻す
+import { readFile } from 'fs'
+{
+  type Executer<T> = (
+    resolve: (result: T) => void,
+    reject: (error: unknown) => void
+  ) => void
+
+  class Promiser<T> {
+    constructor(f: Executer<T>) {}
+    then<U>(g: (result: T) => Promise<U>| U): Promise<U>{
+      // エラー回避のためになんか返す
+      return 'then' as any
+    }
+    catch<U>(g: (result: T) => Promise<U>| U): Promise<U>{
+      // エラー回避のためになんか返す
+      return 'catch' as any
+    }
+  }
+
+  /*
+    function readFilePromise(path: string): Promise<string> {
+    return new Promise((resolve, reject) => {
+      readFile(path, (error, result)=> {
+        if(error) {
+          reject(error)
+        } else {
+          resolve(result)
+        }
+      })
+    })
+  }
+
+  function appendAndReadPromise(pat: string, data: string): Promise<string> {
+    return appendPromise(path, data)
+      .then(()=> readPromise(path))
+      .catch(error => console.error(error))
+  }
+  function appendPromise(path, data) {}
+  function readPromise(path) {}
+  */
 }

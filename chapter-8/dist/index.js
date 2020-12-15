@@ -27,4 +27,38 @@ const fs = require("fs");
         }
     });
 }
+{
+    class Promiser {
+        constructor(f) { }
+        then(g) {
+            // エラー回避のためになんか返す
+            return 'then';
+        }
+        catch(g) {
+            // エラー回避のためになんか返す
+            return 'catch';
+        }
+    }
+    /*
+      function readFilePromise(path: string): Promise<string> {
+      return new Promise((resolve, reject) => {
+        readFile(path, (error, result)=> {
+          if(error) {
+            reject(error)
+          } else {
+            resolve(result)
+          }
+        })
+      })
+    }
+  
+    function appendAndReadPromise(pat: string, data: string): Promise<string> {
+      return appendPromise(path, data)
+        .then(()=> readPromise(path))
+        .catch(error => console.error(error))
+    }
+    function appendPromise(path, data) {}
+    function readPromise(path) {}
+    */
+}
 //# sourceMappingURL=index.js.map
