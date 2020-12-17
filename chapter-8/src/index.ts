@@ -138,10 +138,16 @@ const redis = require("redis");
   }
 
   // Redisクライアントの新しいインスタンスを作成
+  // 処理が止まらないのでコメントにする
+  /*
+
   let client = redis.createClient()
 
   // クライアントによって発行されるイベントをリッスン
   client.on('ready', ()=> console.info('Client is ready'))
   client.on('error', (e: Error) => console.error('An error ocurred!', e))
-  client.on('reconnecting', (params:{attempt: number, delay: number}) => console.info('Reconnecting...', params))
+  client.on('reconnecting', (params:{attempt: number, delay: number}) => {
+    console.info('Reconnecting...', params)
+  })
+  */
 }
