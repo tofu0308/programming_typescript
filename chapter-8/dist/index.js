@@ -80,4 +80,17 @@ const fs = require("fs");
     function getUserID(id) { }
     function getLocation(user) { return user; }
 }
+// 非同期ストリーム
+// イベントエミッター
+{
+}
+const redis = require("redis");
+{
+    // Redisクライアントの新しいインスタンスを作成
+    let client = redis.createClient();
+    // クライアントによって発行されるイベントをリッスン
+    client.on('ready', () => console.info('Client is ready'));
+    client.on('error', (e) => console.error('An error ocurred!', e));
+    client.on('reconnecting', (params) => console.info('Reconnecting...', params));
+}
 //# sourceMappingURL=index.js.map

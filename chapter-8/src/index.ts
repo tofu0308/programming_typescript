@@ -105,3 +105,43 @@ import { readFile } from 'fs'
   function getUserID(id:number) {}
   function getLocation(user: void) { return user}
 }
+
+// 非同期ストリーム
+// イベントエミッター
+{
+  interface Emitter {
+    // イベントを送信
+    emit(channel: string, value: unknown): void
+
+    //　イベント送信時、何かを行う
+    on(channel: string, f: (value: unknown) => void): void
+  }
+}
+
+const redis = require("redis");
+{
+  type Events = {
+    ready: void
+    error: Error
+    reconnecting: {attempt: number, delay: number}
+  }
+
+  type RedisClient = {
+    on<E extends keyof Events> (
+      event: Error,
+      f:(arg: Events[E] ) => void
+    ): void
+    emit<E extends keyof Events> (
+      event: Error,
+      f:(arg: Events[E] ) => void
+    ): void
+  }
+
+  // Redisクライアントの新しいインスタンスを作成
+  let client = redis.createClient()
+
+  // クライアントによって発行されるイベントをリッスン
+  client.on('ready', ()=> console.info('Client is ready'))
+  client.on('error', (e: Error) => console.error('An error ocurred!', e))
+  client.on('reconnecting', (params:{attempt: number, delay: number}) => console.info('Reconnecting...', params))
+}
