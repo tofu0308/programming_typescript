@@ -84,3 +84,24 @@ import { readFile } from 'fs'
   function readPromise(path) {}
   */
 }
+
+// async await
+{
+  
+  
+  async function getUser() {
+    try {
+      let user = await getUserID(18)
+      let location = await getLocation(user)
+      console.info('got location', user)
+    } catch(error) {
+      console.error(error)
+    } finally {
+      console.info('done getting location')
+    }
+  }
+
+  // エラー避け　適当に定義
+  function getUserID(id:number) {}
+  function getLocation(user: void) { return user}
+}
