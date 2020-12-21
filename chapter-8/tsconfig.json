@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "lib": ["es2015", "dom"],
+    "lib": ["es2015", "dom", "webworker"],
     "module": "commonjs",
     "outDir": "dist",
     "sourceMap": true,
