@@ -151,3 +151,10 @@ const redis = require("redis");
   })
   */
 }
+
+// 型安全なマルチスレッディング
+// Web worker(browser)
+{
+  
+}
+
