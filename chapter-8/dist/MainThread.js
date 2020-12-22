@@ -27,4 +27,22 @@ eventEmitter.on('createdThread', (threadID, participants) => {
 });
 // コマンドをWorkerに送信　
 commandEmitter.emit('createThread', [123, 456]);
+function createProtocol(script) {
+    return (command) => {
+        (...args) => {
+            new Promise((resolve, reject) => {
+                let worker = new Worker(script);
+                worker.onerror = reject;
+                worker.onmessage = (event) => { resolve(event.data); };
+                worker.postMessage({ command, args });
+            });
+        };
+    };
+}
+let runWithMatrixProtocol = createProtocol('MatrixWorkerScript.js');
+let parallelDeterminant = runWithMatrixProtocol('determinant');
+/*
+parallelDeterminant([[1, 2], [3, 4]])
+  .then(determinant => console.log(determinant))
+*/ 
 //# sourceMappingURL=MainThread.js.map
