@@ -1,5 +1,12 @@
 import {EventEmitter} from 'events'
 import { threadId } from 'worker_threads'
+import { fork } from 'child_process'
+
+let child = fork('./ChildThread.js')
+child.on('message', data => {
+  console.info('Child process sent a message', data)
+})
+child.send({type: 'syn', data:[3]})
 
 interface SafeEmitter<
   Events extends Record<PropertyKey, unknown[]>

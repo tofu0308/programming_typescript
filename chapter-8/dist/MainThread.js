@@ -1,6 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const events_1 = require("events");
+const child_process_1 = require("child_process");
+let child = child_process_1.fork('./ChildThread.js');
+child.on('message', data => {
+    console.info('Child process sent a message', data);
+});
+child.send({ type: 'syn', data: [3] });
 let commandEmitter = new events_1.EventEmitter();
 let eventEmitter = new events_1.EventEmitter();
 let worker = new Worker('WorkerScript.js');
