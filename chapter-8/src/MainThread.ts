@@ -1,6 +1,7 @@
 import {EventEmitter} from 'events'
 import { threadId } from 'worker_threads'
 import { fork } from 'child_process'
+import { runInNewContext } from 'vm'
 
 let child = fork('./ChildThread.js')
 child.on('message', data => {
@@ -44,6 +45,7 @@ type Events = {
   addedUserToThread: [ThreadID, UserID]
   removedUserFromThread: [ThreadID, UserID]
 }
+
 
 let commandEmitter: SafeEmitter<Commands> = new EventEmitter()
 let eventEmitter: SafeEmitter<Events> = new EventEmitter()
@@ -125,3 +127,22 @@ let parallelDeterminant = runWithMatrixProtocol('determinant')
 parallelDeterminant([[1, 2], [3, 4]])
   .then(determinant => console.log(determinant))
 */
+
+function createProtocolCP<P extends Protocol>(script: string) {
+  return <K extends keyof P>(command: K) => (...args: P[K]['in']) => 
+    new Promise<P[K]['out']>((resolve, reject)=> {
+      let child = fork(script)
+      child.on('error', reject)
+      child.on('message', resolve)
+      child.send({command, args})
+    })
+}
+
+let runWithMatrixProtocolCP = createProtocolCP<MatrixProctol>('./ChildThread.js')
+let parallelDeterminantCP = runInNewContext('determinant')
+
+parallelDeterminantCP([[1,2],[3,4]]).then(
+  // パラメーター 'determinant' の型は暗黙的に 'any' になります。ts(7006)
+  // @ts-ignore
+  determinant => console.log(determinant)
+)

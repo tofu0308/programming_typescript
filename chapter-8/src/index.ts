@@ -44,6 +44,7 @@ import * as fs from 'fs'
 
 // プロミスを使って健全さを取り戻す
 import { readFile } from 'fs'
+import { rejects } from 'assert'
 {
   type Executer<T> = (
     resolve: (result: T) => void,
@@ -151,3 +152,27 @@ const redis = require("redis");
   })
   */
 }
+
+// 練習問題
+// モジュールモードを強制します
+export default null
+
+// 1. 汎用的なpromisify関数を実装してください。promisifyは、1つの引数と1つのコールバックを取る任意の関数をパラメーターとして取り、それを、プロミスを返す関数の中にラップします。
+function promisify<T, A>(
+  f: (arg:A, F: (error: unknown, result: T|null)=> void ) => void
+): (arg: A) => Promise<T> {
+  return (arg: A) =>
+    new Promise<T>((resolve, reject)=> 
+      f(arg, (error, result) => {
+        if(error) return reject(error)
+        if(result === null) return reject(null)
+        resolve(result)
+      }) 
+    )
+}
+
+let readFilePromise = promisify(readFile)
+readFilePromise(__dirname + '/exercises.js')
+  .then(result => console.log('done!', result.toString()))
+
+// 2. 「8.6.1.1 型安全なプロトコル」では、型安全な行列演算のためのプロトコルの半分を作成しました。これをメインスレッドで実行すると仮定して、Web Workerスレッドで実行する残りの半分を実装してください。

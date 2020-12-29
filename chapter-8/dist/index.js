@@ -27,6 +27,8 @@ const fs = require("fs");
         }
     });
 }
+// プロミスを使って健全さを取り戻す
+const fs_1 = require("fs");
 {
     class Promiser {
         constructor(f) { }
@@ -100,4 +102,21 @@ const redis = require("redis");
     })
     */
 }
+// 練習問題
+// モジュールモードを強制します
+exports.default = null;
+// 1. 汎用的なpromisify関数を実装してください。promisifyは、1つの引数と1つのコールバックを取る任意の関数をパラメーターとして取り、それを、プロミスを返す関数の中にラップします。
+function promisify(f) {
+    return (arg) => new Promise((resolve, reject) => f(arg, (error, result) => {
+        if (error)
+            return reject(error);
+        if (result === null)
+            return reject(null);
+        resolve(result);
+    }));
+}
+let readFilePromise = promisify(fs_1.readFile);
+readFilePromise(__dirname + '/exercises.js')
+    .then(result => console.log('done!', result.toString()));
+// 2. 「8.6.1.1 型安全なプロトコル」では、型安全な行列演算のためのプロトコルの半分を作成しました。これをメインスレッドで実行すると仮定して、Web Workerスレッドで実行する残りの半分を実装してください。
 //# sourceMappingURL=index.js.map

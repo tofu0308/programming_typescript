@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const events_1 = require("events");
 const child_process_1 = require("child_process");
+const vm_1 = require("vm");
 let child = child_process_1.fork('./ChildThread.js');
 child.on('message', data => {
     console.info('Child process sent a message', data);
@@ -50,5 +51,19 @@ let parallelDeterminant = runWithMatrixProtocol('determinant');
 /*
 parallelDeterminant([[1, 2], [3, 4]])
   .then(determinant => console.log(determinant))
-*/ 
+*/
+function createProtocolCP(script) {
+    return (command) => (...args) => new Promise((resolve, reject) => {
+        let child = child_process_1.fork(script);
+        child.on('error', reject);
+        child.on('message', resolve);
+        child.send({ command, args });
+    });
+}
+let runWithMatrixProtocolCP = createProtocolCP('./ChildThread.js');
+let parallelDeterminantCP = vm_1.runInNewContext('determinant');
+parallelDeterminantCP([[1, 2], [3, 4]]).then(
+// パラメーター 'determinant' の型は暗黙的に 'any' になります。ts(7006)
+// @ts-ignore
+determinant => console.log(determinant));
 //# sourceMappingURL=MainThread.js.map
