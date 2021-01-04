@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "es2015"],
+    "module": "es2015",
+    "sourceMap": true,
+    "strict": true,
+    "target": "es5",
+  }
+}
