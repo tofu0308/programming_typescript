@@ -1,4 +1,4 @@
- import react from 'react'
- import ReactDOM from 'react-dom';
+import React from 'react'
+import {FancyButton} from './FancyButton'
 
- 
+
