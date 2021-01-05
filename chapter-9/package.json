@@ -20,6 +20,10 @@
     "webpack-cli": "^4.3.1"
   },
   "dependencies": {
-    "EventEmitter": "^1.0.0"
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "EventEmitter": "^1.0.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   }
 }

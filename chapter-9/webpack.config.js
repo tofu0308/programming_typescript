@@ -1,18 +1,20 @@
 module.exports = {
-  mode: 'development',
-  entry: './src/index.ts',
-
+  mode: "development",
+  entry: "./src/index.tsx",
+  output: {
+    path: `${__dirname}/dist`,
+    filename: "index.js"
+  },
   module: {
     rules: [
       {
-        test: /\.ts$/,
-        use: 'ts-loader',
-      },
-    ],
+        test: /\.tsx?$/,
+        use: "ts-loader"
+      }
+    ]
   },
   resolve: {
-    extensions: [
-      '.ts', '.js',
-    ],
+    extensions: [".ts", ".tsx", ".js", ".json"]
   },
+  target: ["web", "es5"],
 };
