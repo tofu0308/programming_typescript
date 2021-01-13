@@ -55,5 +55,28 @@ namespace A {
 }
 
 import d = A.B.C.d
+import { builtinModules } from 'module'
 let e = d*3
 console.log(e)
+
+
+// コンパイルされた出力結果
+namespace Flowers {
+  export function give(count: number) {
+    return `${count} flowers`
+  }
+}
+let flowers = Flowers.give(4)
+console.log(flowers)
+// 名前空間はtsconfigの設定問わず、常にグローバル変数にコンパイルされる
+/* コンパイルされたdist/index.jsの引用
+var Flowers;
+(function (Flowers) {
+    function give(count) {
+        return `${count} flowers`;
+    }
+    Flowers.give = give;
+})(Flowers || (Flowers = {}));
+let flowers = Flowers.give(4);
+console.log(flowers);
+*/

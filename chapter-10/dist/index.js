@@ -46,4 +46,26 @@ var A;
 var d = A.B.C.d;
 let e = d * 3;
 console.log(e);
+// コンパイルされた出力結果
+var Flowers;
+(function (Flowers) {
+    function give(count) {
+        return `${count} flowers`;
+    }
+    Flowers.give = give;
+})(Flowers || (Flowers = {}));
+let flowers = Flowers.give(4);
+console.log(flowers);
+// 名前空間はtsconfigの設定問わず、常にグローバル変数にコンパイルされる
+/* コンパイルされたdist/index.jsの引用
+var Flowers;
+(function (Flowers) {
+    function give(count) {
+        return `${count} flowers`;
+    }
+    Flowers.give = give;
+})(Flowers || (Flowers = {}));
+let flowers = Flowers.give(4);
+console.log(flowers);
+*/
 //# sourceMappingURL=index.js.map
