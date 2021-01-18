@@ -2,6 +2,8 @@ import {locale} from './locales/locale-us'
 import { SSL_OP_NETSCAPE_DEMO_CIPHER_CHANGE_BUG } from 'constants'
 import { promises } from 'fs'
 
+export default null
+
 async function main() {
   let userLocale = await getUserLocale()
   let path = `./locales/locale-${userLocale}`
@@ -56,6 +58,7 @@ namespace A {
 
 import d = A.B.C.d
 import { builtinModules } from 'module'
+import { captureRejectionSymbol } from 'events'
 let e = d*3
 console.log(e)
 
@@ -80,3 +83,39 @@ var Flowers;
 let flowers = Flowers.give(4);
 console.log(flowers);
 */
+
+// 練習問題
+// a
+interface Currency {
+  unit:'EUR'|'GBP'|'JPY'|'USD'
+  value:number
+}
+
+namespace Currency {
+  export let DEFAULT: Currency['unit'] = 'USD'
+  export function from(value: number, unit = Currency.DEFAULT) : Currency {
+    return {unit, value}
+  }
+}
+
+let amountDue: Currency = {
+  unit: 'JPY',
+  value: 12345.1
+}
+
+let otherAmountDue = Currency.from(330, 'EUR')
+
+// b
+enum Color {
+  RED = '#ff0000',
+  GREEN = '#00ff00',
+  BLUE = '#0000ff'
+}
+
+namespace Color {
+  export function getClosest(to: string): Color {
+    // エラー回避のために適当な値を返す
+    return Color['RED']
+  }
+}
+Color.getClosest('#ffa500')

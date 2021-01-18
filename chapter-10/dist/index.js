@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = null;
 async function main() {
     let userLocale = await getUserLocale();
     let path = `./locales/locale-${userLocale}`;
@@ -56,16 +57,32 @@ var Flowers;
 })(Flowers || (Flowers = {}));
 let flowers = Flowers.give(4);
 console.log(flowers);
-// 名前空間はtsconfigの設定問わず、常にグローバル変数にコンパイルされる
-/* コンパイルされたdist/index.jsの引用
-var Flowers;
-(function (Flowers) {
-    function give(count) {
-        return `${count} flowers`;
+var Currency;
+(function (Currency) {
+    Currency.DEFAULT = 'USD';
+    function from(value, unit = Currency.DEFAULT) {
+        return { unit, value };
     }
-    Flowers.give = give;
-})(Flowers || (Flowers = {}));
-let flowers = Flowers.give(4);
-console.log(flowers);
-*/
+    Currency.from = from;
+})(Currency || (Currency = {}));
+let amountDue = {
+    unit: 'JPY',
+    value: 12345.1
+};
+let otherAmountDue = Currency.from(330, 'EUR');
+// b
+var Color;
+(function (Color) {
+    Color["RED"] = "#ff0000";
+    Color["GREEN"] = "#00ff00";
+    Color["BLUE"] = "#0000ff";
+})(Color || (Color = {}));
+(function (Color) {
+    function getClosest(to) {
+        // エラー回避のために適当な値を返す
+        return Color['RED'];
+    }
+    Color.getClosest = getClosest;
+})(Color || (Color = {}));
+Color.getClosest('#ffa500');
 //# sourceMappingURL=index.js.map
