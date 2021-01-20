@@ -1,20 +1,7 @@
-type ToArray<T> = T extends unknown[] ? T: T[]
-export declare let process: {
-  env: {
-    NODE_ENV: 'development'|'production'
-  }
-}
+import { toByteArray } from "base64-js";
+import { TextDecoder } from "util";
 
-
-
-
-process = {
-  env: {
-    NODE_ENV: 'production'
-  }
-}
-
-function toArray<T>(a: T): ToArray<T> {
-  return a as ToArray<T>
-}
-
+const encoded = "44GT44KT44Gr44Gh44Gv"; // "こんにちは" をBase64エンコードしたもの
+console.log(`encoded: ${encoded}`);
+const decoded = new TextDecoder().decode(toByteArray(encoded));
+console.log(`decoded: ${decoded}`);

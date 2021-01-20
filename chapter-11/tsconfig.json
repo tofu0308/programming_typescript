@@ -9,10 +9,9 @@
     "experimentalDecorators": true,
     "noImplicitReturns": true,
     "baseUrl": "./",
-    "paths":{
-      "*": ["index", "src/types/index.d.ts"]
-    } ,
-    "typeRoots" : ["types"]
+    "paths": {"base64-js": ["types/base64-js"]},
+    "typeRoots": ["types", "node_modules/@types"],
+
   },
   "include": [
     "src"
