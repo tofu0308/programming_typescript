@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "lib": ["es2015", "webworker"],
+    "lib": ["es2015", "es2016.Array.Include", "dom"],
     "module": "commonjs",
     "outDir": "dist",
     "sourceMap": true,
@@ -8,6 +8,11 @@
     "target": "es2020",
     "experimentalDecorators": true,
     "noImplicitReturns": true,
+    "baseUrl": "./",
+    "paths":{
+      "*": ["index", "src/types/index.d.ts"]
+    } ,
+    "typeRoots" : ["types"]
   },
   "include": [
     "src"

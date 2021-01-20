@@ -6,15 +6,3 @@ export declare let process: {
 }
 
 
-
-
-process = {
-  env: {
-    NODE_ENV: 'production'
-  }
-}
-
-function toArray<T>(a: T): ToArray<T> {
-  return a as ToArray<T>
-}
-
