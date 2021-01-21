@@ -1,10 +1,14 @@
 {
   "compilerOptions": {
     "lib": ["es2015", "es2016.Array.Include", "dom"],
+    "allowJs": true,
+    "checkJs": true,
+    "noImplicitAny": false,
+    "strict": true,
+    
     "module": "commonjs",
     "outDir": "dist",
     "sourceMap": true,
-    "strict": true,
     "target": "es2020",
     "experimentalDecorators": true,
     "noImplicitReturns": true,
