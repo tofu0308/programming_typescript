@@ -4,9 +4,9 @@
  * @returns {string} パスカルケースでの文字列
  * 
  */
-export function toPascalCase(word) {
+export function toPascalCase(word:any): string {
   return word.replace(
     /\w+/g,
-    ([a, ...b]) => a.toUpperCase + b.join('').toLowerCase()
+    ([a, ...b]:string[]) => a.toUpperCase + b.join('').toLowerCase()
   )
 }

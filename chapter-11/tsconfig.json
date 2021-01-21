@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "lib": ["es2015", "es2016.Array.Include", "dom"],
-    "allowJs": true,
-    "checkJs": true,
+    "allowJs": false,
+    "checkJs": false,
     "noImplicitAny": false,
     "strict": true,
     
