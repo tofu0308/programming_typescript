@@ -12,7 +12,11 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^14.14.16",
+    "@types/react": "^17.0.0",
     "tslint": "^6.1.2",
     "typescript": "^3.9.6"
+  },
+  "dependencies": {
+    "react": "^17.0.1"
   }
 }
